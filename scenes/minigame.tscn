@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ckx6xxrlrj4t4"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/GridContainer"]
+layout_mode = 2

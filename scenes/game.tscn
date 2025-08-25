@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=12 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://d48stx5k5mx7" path="res://assets/tiles.png" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://d1ufbvlqqnucq" path="res://scenes/ingredients_ui.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cldxi0rl34qa4" path="res://scenes/tindahan.tscn" id="5_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("2_lnu2h")
@@ -545,6 +547,10 @@ color_ramp = SubResource("GradientTexture1D_lbhrr")
 
 [node name="Game" type="Node2D"]
 
+[node name="IngredientsUI" parent="." instance=ExtResource("4_lbhrr")]
+offset = Vector2(0.36, -28.78)
+transform = Transform2D(1, 0, 0, 1, 0.36, -28.78)
+
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(0, -4)
 
@@ -556,6 +562,10 @@ tile_map_data = PackedByteArray("AAD8/wEAAAAHAAcAAAD9/wEAAAAHAAcAAAD+/wEAAAAHAAc
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-2, 24)
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_lnu2h")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(166, 22)
