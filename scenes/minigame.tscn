@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://ckx6xxrlrj4t4"]
+[gd_scene load_steps=2 format=3 uid="uid://ckx6xxrlrj4t4"]
+
+[ext_resource type="Script" uid="uid://l1ekav6qp22a" path="res://scripts/minigame.gd" id="1_5iev5"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_5iev5")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 319.0
+offset_bottom = 319.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -13,8 +16,8 @@ offset_bottom = 23.0
 
 [node name="GridContainer" type="GridContainer" parent="Panel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 150.0
+offset_bottom = 122.0
 
 [node name="TextureButton" type="TextureButton" parent="Panel/GridContainer"]
 layout_mode = 2

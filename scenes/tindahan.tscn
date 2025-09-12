@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gq5j"]
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="tindahan" type="StaticBody2D"]
 script = ExtResource("1_ugkg1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

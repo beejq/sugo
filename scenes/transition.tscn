@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://6pqeei22x8ao"]
+
+[ext_resource type="Script" uid="uid://xg101an7ecfp" path="res://scripts/transition.gd" id="1_f0i4t"]
+[ext_resource type="Shader" uid="uid://prv701ocriyq" path="res://shaders/deathshader.gdshader" id="1_rerct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0i4t"]
+shader = ExtResource("1_rerct")
+shader_parameter/progress = 0.0
+shader_parameter/block_size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_kvuet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dinhu"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_trtic"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_trtic"]
+_data = {
+&"RESET": SubResource("Animation_kvuet"),
+&"fade_in": SubResource("Animation_dinhu"),
+&"fade_out": SubResource("Animation_trtic")
+}
+
+[node name="transition" type="CanvasLayer"]
+script = ExtResource("1_f0i4t")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_f0i4t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.0
+offset_top = -32.0
+offset_right = 63.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ColorRect2")
+libraries = {
+&"": SubResource("AnimationLibrary_trtic")
+}
