@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=18 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://c0uprgyfi2s3j" path="res://scripts/game.gd" id="1_vtaks"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d1ufbvlqqnucq" path="res://scenes/ingredients_ui.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://c27o3cuvn44py" path="res://assets/parallax/Clouds2/summer8/1.png" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://c5nt52arhbxe8" path="res://assets/parallax/Clouds/Clouds 1/1.png" id="5_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dhxhoft8i2mr" path="res://assets/parallax/Clouds2/summer8/2.png" id="6_gee14"]
 [ext_resource type="Texture2D" uid="uid://bf4hldn7wpy4" path="res://assets/parallax/Clouds2/summer8/3.png" id="7_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://cmemn8kxuh835" path="res://assets/parallax/Clouds2/summer8/4.png" id="8_vtaks"]
@@ -946,7 +947,8 @@ tile_map_data = PackedByteArray("AADv/wYAAAAHAAcAAADw/wYAAAAHAAcAAADx/wYAAAAHAAc
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="BG" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAABAAQAAAAEAAoAAAABAAUAAAAEAAsAAAACAAQAAAAFAAoAAAACAAUAAAAFAAsAAAD9/wMAAAAUAAYAAAD9/wQAAAAUAAcAAAD9/wUAAAAUAAgAAAD9/wIAAAAVAAcAAAD9/wEAAAAUAAYAAAD9/wAAAAAUAAUAAAD8//3/AAATAAMAAAD8//7/AAATAAQAAAD8////AAATAAUAAAD9//3/AAAUAAMAAAD9//7/AAAUAAQAAAD9////AAAUAAUAAAD+//3/AAAVAAMAAAD+//7/AAAVAAQAAAD+////AAAVAAUAAAD+/wUAAAAHAAkAAAD8/wUAAAAHAAcAAAD//wUAAAAHAAcAAAAAAAUAAAAHAAcAAAADAAUAAAAJAAcAAAAEAAUAAAAHAAcAAAAFAAUAAAAIAAcAAAAGAAUAAAAIAAcAAAAHAAUAAAAJAAcAAAAIAAUAAAAHAAcAAAAJAAUAAAAJAAcAAAAKAAUAAAAIAAcAAAAMAAUAAAAHAAcAAAANAAUAAAAIAAcAAAALAAUAAAAJAAcAAADy/wUAAAAHAAcAAADx/wUAAAAJAAcAAADw/wUAAAAHAAcAAADv/wUAAAAHAAcAAADu/wUAAAAHAAcAAADt/wUAAAAIAAcAAADs/wUAAAAJAAcAAADr/wUAAAAHAAcAAADq/wUAAAAHAAcAAAA=")
+position = Vector2(2, 0)
+tile_map_data = PackedByteArray("AAABAAQAAAAEAAoAAAABAAUAAAAEAAsAAAACAAQAAAAFAAoAAAACAAUAAAAFAAsAAAD9/wMAAAAUAAYAAAD9/wQAAAAUAAcAAAD9/wUAAAAUAAgAAAD9/wIAAAAVAAcAAAD9/wEAAAAUAAYAAAD9/wAAAAAUAAUAAAD8//3/AAATAAMAAAD8//7/AAATAAQAAAD8////AAATAAUAAAD9//3/AAAUAAMAAAD9//7/AAAUAAQAAAD9////AAAUAAUAAAD+//3/AAAVAAMAAAD+//7/AAAVAAQAAAD+////AAAVAAUAAAD+/wUAAAAHAAkAAAD8/wUAAAAHAAcAAAD//wUAAAAHAAcAAAAAAAUAAAAHAAcAAAADAAUAAAAJAAcAAAAEAAUAAAAHAAcAAAAFAAUAAAAIAAcAAAAGAAUAAAAIAAcAAAAHAAUAAAAJAAcAAAAIAAUAAAAHAAcAAAAJAAUAAAAJAAcAAAAKAAUAAAAIAAcAAAAMAAUAAAAHAAcAAAANAAUAAAAIAAcAAAALAAUAAAAJAAcAAADy/wUAAAAHAAcAAADx/wUAAAAJAAcAAADw/wUAAAAHAAcAAADv/wUAAAAHAAcAAADu/wUAAAAHAAcAAADt/wUAAAAIAAcAAADs/wUAAAAJAAcAAADr/wUAAAAHAAcAAADq/wUAAAAHAAcAAAAOAAYAAAAHAAYAAAAOAAcAAAAIAAUAAAAOAAgAAAAIAAQAAAAOAAkAAAAIAAUAAAAOAAoAAAAIAAMAAAAOAAsAAAAHAAUAAAAOAAwAAAAHAAIAAAAOAA0AAAAHAAQAAAAOAA4AAAAIAAQAAAAOAA8AAAAIAAMAAAAPAAYAAAAIAAUAAAAPAAcAAAAHAAMAAAAPAAgAAAAIAAMAAAAPAAkAAAAHAAQAAAAPAAoAAAAHAAYAAAAPAAsAAAAHAAQAAAAPAAwAAAAHAAMAAAAPAA0AAAAIAAUAAAAPAA4AAAAHAAMAAAAPAA8AAAAIAAMAAAAQAAYAAAAIAAQAAAAQAAcAAAAIAAQAAAAQAAgAAAAHAAMAAAAQAAkAAAAIAAMAAAAQAAoAAAAIAAMAAAAQAAsAAAAHAAQAAAAQAAwAAAAHAAYAAAAQAA0AAAAIAAYAAAAQAA4AAAAHAAMAAAAQAA8AAAAHAAQAAAA=")
 tile_set = SubResource("TileSet_iywne")
 
 [node name="FarBG" type="TileMapLayer" parent="."]
@@ -954,6 +956,15 @@ tile_map_data = PackedByteArray("AAABAAQAAAAEAAoAAAABAAUAAAAEAAsAAAACAAQAAAAFAAo
 tile_set = SubResource("TileSet_iywne")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Nearestestest2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(576, 324)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Nearestestest2"]
+position = Vector2(-266, -162)
+texture = ExtResource("5_kvpfn")
+centered = false
+offset = Vector2(72, 0)
 
 [node name="Far" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -1005,3 +1016,4 @@ position = Vector2(1, 0)
 shape = SubResource("WorldBoundaryShape2D_vtaks")
 
 [node name="IngredientsUI" parent="." instance=ExtResource("4_lbhrr")]
+visible = false
