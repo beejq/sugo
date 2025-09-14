@@ -68,6 +68,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_smehm")
+}],
+"loop": true,
+"name": &"sliding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y4r1p")
 }, {
 "duration": 1.0,
@@ -131,12 +139,11 @@ _data = {
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_dqkch")
-JUMP_VELOCITY = -280.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"walk"
+animation = &"sliding"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -174,5 +181,10 @@ libraries = {
 wait_time = 0.15
 one_shot = true
 
+[node name="MoveWhileWallJumpingCD" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dashCD" to="." method="_on_dash_cd_timeout"]
+[connection signal="timeout" from="MoveWhileWallJumpingCD" to="." method="_on_move_while_wall_jumping_cd_timeout"]

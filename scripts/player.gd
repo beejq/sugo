@@ -10,19 +10,25 @@ extends CharacterBody2D
 @onready var dash_sfx: AudioStreamPlayer2D = $DashSFX
 @onready var spin: AnimationPlayer = $spin
 @onready var coyote_timer: Timer = $CoyoteTimer
+@onready var move_while_wall_jumping_cd: Timer = $MoveWhileWallJumpingCD
+@onready var world_border: StaticBody2D = $"../world_border"
+
 
 # --- Configurable stats ---
 @export var SPEED : float = 200.0
-@export var JUMP_VELOCITY = -310.0
+@export var JUMP_VELOCITY = -300.0
 const DASH_MULTIPLIER := 2.5
 const COYOTE_TIME := 0.15
 const JUMP_BUFFER_TIME := 0.15
+const WALL_JUMP_PUSHBACK = 100
+var WALL_SLIDE_GRAVITY = 80
 
 # --- State ---
 var isSprinting: bool = false
 var doDash: bool = false
 var dashDirection: int
 var dashCooldown: bool = false
+var isWallJumping: bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -62,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	# Grounded / Airborne
 	# -----------------------
 	if is_on_floor() or !coyote_timer.is_stopped():
+		isWallJumping = false
 		if was_airborne:
 			# Landed → reset jumps
 			jumpCounter = 0
@@ -77,6 +84,33 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity += get_gravity() * delta
 		was_airborne = true
+	
+	# -----------------------
+	# Wall Jump and Wall Slide
+	# -----------------------
+	if is_on_wall_only() and Input.is_action_just_pressed("jump"):
+		var collision := get_slide_collision(0)
+		if collision:
+			var collider = collision.get_collider()
+			# Only allow wall jump if not the world border
+			if collider.name != "world_border":
+				animated_sprite_2d.play("sliding")
+				move_while_wall_jumping_cd.start()
+				isWallJumping = true
+				velocity.y = JUMP_VELOCITY
+				spin.stop()
+
+				var wall_normal = get_wall_normal()
+				velocity.x = wall_normal.x * WALL_JUMP_PUSHBACK
+		
+	if is_on_wall_only() and Input.get_axis("left", "right"):
+		var collision := get_slide_collision(0)
+		if collision:
+			var collider = collision.get_collider()
+			# 🚫 Prevent wall slide if it's the world border
+			if collider.name != "world_border":
+				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
+				animated_sprite_2d.play("sliding")
 
 	# -----------------------
 	# Variable jump height
@@ -93,11 +127,11 @@ func _physics_process(delta: float) -> void:
 	if direction != 0:
 		var input_left = direction < 0
 		animated_sprite_2d.flip_h = input_left
-
-		if isSprinting and ((velocity.x > 0 and input_left) or (velocity.x < 0 and not input_left)):
-			isSprinting = false
-			SPEED = 50
-			animated_sprite_2d.play("slide")
+#
+		#if isSprinting and ((velocity.x > 0 and input_left) or (velocity.x < 0 and not input_left)):
+			#isSprinting = false
+			#SPEED = 50
+			#animated_sprite_2d.play("slide")
 
 	# Sprint logic 
 	#if Input.is_action_pressed("sprint") and direction != 0:
@@ -130,9 +164,9 @@ func _physics_process(delta: float) -> void:
 	if doDash:
 		velocity.x = dashDirection * SPEED * DASH_MULTIPLIER
 		velocity.y = 0
-	elif direction:
+	elif direction and not isWallJumping:
 		velocity.x = direction * SPEED
-	else:
+	elif not isWallJumping:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# -----------------------
@@ -158,12 +192,15 @@ func _on_dash_timer_timeout() -> void:
 func _on_dash_cd_timeout() -> void:
 	dashCooldown = false
 
+func _on_move_while_wall_jumping_cd_timeout() -> void:
+	isWallJumping = false
+
 # -----------------------
 # Helpers
 # -----------------------
-func double_jump():
-	velocity.y = JUMP_VELOCITY
-	jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)
+#func double_jump():
+	#velocity.y = JUMP_VELOCITY
+	#jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)
 
 func die():
 	pass

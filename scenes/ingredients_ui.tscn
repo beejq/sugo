@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d1ufbvlqqnucq"]
 
 [ext_resource type="Script" uid="uid://cjrmg6vt7msyn" path="res://scripts/ingredients_ui.gd" id="1_ovygv"]
-[ext_resource type="Texture2D" uid="uid://cu0ho8ju5kkjq" path="res://assets/ui/Tilesheets/Large tiles/Thin outline/tilemap.png" id="2_indwd"]
+[ext_resource type="Texture2D" uid="uid://dhx2lbnvoijuf" path="res://assets/ui/cozy gui/Cozy GUI/Tileset/Cozy GUI - Tileset (By Pizza Doggy).png" id="2_xcani"]
 [ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_a20d4"]
 [ext_resource type="FontFile" uid="uid://dae4ki7o8weh5" path="res://assets/font/PixelAE-Regular.ttf" id="4_4ui1h"]
 [ext_resource type="Texture2D" uid="uid://qospodtqy126" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/eggs_brown.png" id="5_4ui1h"]
@@ -9,8 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://br4wfb4fqfu3a" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/fruit_apple.png" id="7_phjot"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o52pe"]
-texture = ExtResource("2_indwd")
-region_rect = Rect2(66, 0, 32, 32)
+texture = ExtResource("2_xcani")
+texture_margin_left = 10.0
+texture_margin_top = 36.0
+texture_margin_right = 10.0
+texture_margin_bottom = 38.0
+region_rect = Rect2(145, 0, 46, 48)
 
 [node name="IngredientsUI" type="CanvasLayer"]
 process_mode = 2
@@ -39,10 +43,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -488.5
-offset_top = 151.0
-offset_right = 491.5
-offset_bottom = 346.0
+offset_left = -490.0
+offset_top = 100.0
+offset_right = 490.0
+offset_bottom = 295.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("3_a20d4")
 theme_override_font_sizes/font_size = 64
@@ -52,26 +56,33 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -278.5
-offset_top = -112.5
-offset_right = 276.5
-offset_bottom = 238.5
+offset_left = -574.0
+offset_top = -115.0
+offset_right = 574.0
+offset_bottom = 236.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="ingredient1" type="HBoxContainer" parent="Panel/VBoxContainer"]
+[node name="ingredient1" type="VBoxContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/ingredient1"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("5_4ui1h")
+stretch_mode = 5
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient1"]
 layout_mode = 2
@@ -82,15 +93,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/ingredient1"]
+[node name="ingredient2" type="VBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_4ui1h")
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/ingredient2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("6_xcani")
 expand_mode = 2
 stretch_mode = 5
-
-[node name="ingredient2" type="HBoxContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
-alignment = 1
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient2"]
 layout_mode = 2
@@ -101,16 +114,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/ingredient2"]
-custom_minimum_size = Vector2(80, 80)
+[node name="ingredient3" type="VBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("6_xcani")
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/ingredient3"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("7_phjot")
 expand_mode = 2
 stretch_mode = 5
-
-[node name="ingredient3" type="HBoxContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
-alignment = 1
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient3"]
 layout_mode = 2
@@ -120,13 +134,6 @@ text = "Sample Ingredient"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/ingredient3"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-texture = ExtResource("7_phjot")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

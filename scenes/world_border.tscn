@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdwsx8qgw7wp4"]
+
+[ext_resource type="Script" uid="uid://cl6f7mevhjh8m" path="res://scripts/world border.gd" id="1_gs6km"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gs6km"]
+a = Vector2(1, 0)
+b = Vector2(1, -612)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sxw8n"]
+b = Vector2(0, -1846)
+
+[node name="world_border" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_gs6km")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_gs6km")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_sxw8n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
