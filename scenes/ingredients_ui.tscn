@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ufbvlqqnucq"]
+[gd_scene load_steps=8 format=3 uid="uid://d1ufbvlqqnucq"]
 
 [ext_resource type="Script" uid="uid://cjrmg6vt7msyn" path="res://scripts/ingredients_ui.gd" id="1_ovygv"]
 [ext_resource type="Texture2D" uid="uid://dhx2lbnvoijuf" path="res://assets/ui/cozy gui/Cozy GUI/Tileset/Cozy GUI - Tileset (By Pizza Doggy).png" id="2_xcani"]
 [ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_a20d4"]
-[ext_resource type="FontFile" uid="uid://dae4ki7o8weh5" path="res://assets/font/PixelAE-Regular.ttf" id="4_4ui1h"]
 [ext_resource type="Texture2D" uid="uid://qospodtqy126" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/eggs_brown.png" id="5_4ui1h"]
 [ext_resource type="Texture2D" uid="uid://dqtbodheyuv1l" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/coffee_raw.png" id="6_xcani"]
 [ext_resource type="Texture2D" uid="uid://br4wfb4fqfu3a" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/fruit_apple.png" id="7_phjot"]
@@ -86,8 +85,8 @@ stretch_mode = 5
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient1"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4ui1h")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_a20d4")
+theme_override_font_sizes/font_size = 36
 text = "Sample Ingredient"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -107,8 +106,8 @@ stretch_mode = 5
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4ui1h")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_a20d4")
+theme_override_font_sizes/font_size = 36
 text = "Sample Ingredient"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -128,8 +127,8 @@ stretch_mode = 5
 
 [node name="label" type="Label" parent="Panel/VBoxContainer/ingredient3"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_4ui1h")
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("3_a20d4")
+theme_override_font_sizes/font_size = 36
 text = "Sample Ingredient"
 horizontal_alignment = 1
 vertical_alignment = 1

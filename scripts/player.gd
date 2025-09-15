@@ -12,6 +12,9 @@ extends CharacterBody2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var move_while_wall_jumping_cd: Timer = $MoveWhileWallJumpingCD
 @onready var world_border: StaticBody2D = $"../world_border"
+@onready var world_border_2: StaticBody2D = $"../world_border2"
+@onready var dust = preload("res://scenes/dust.tscn")
+@onready var dust_location: Marker2D = $Marker2D
 
 
 # --- Configurable stats ---
@@ -29,6 +32,7 @@ var doDash: bool = false
 var dashDirection: int
 var dashCooldown: bool = false
 var isWallJumping: bool = false
+var isGrounded: bool = true
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -39,6 +43,16 @@ var jump_buffer_timer := 0.0
 
 
 func _physics_process(delta: float) -> void:
+	
+	# Particle Effect on Landing
+	
+	if isGrounded == false and is_on_floor() == true:
+		var instance = dust.instantiate()
+		instance.global_position = dust_location.global_position
+		get_parent().add_child(instance)
+		
+	isGrounded = is_on_floor()
+	
 	# -----------------------
 	# Update timers
 	# -----------------------
@@ -93,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		if collision:
 			var collider = collision.get_collider()
 			# Only allow wall jump if not the world border
-			if collider.name != "world_border":
+			if collider.name != "world_border" and collider.name != "world_border2":
 				animated_sprite_2d.play("sliding")
 				move_while_wall_jumping_cd.start()
 				isWallJumping = true

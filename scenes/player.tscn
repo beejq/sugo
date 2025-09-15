@@ -143,7 +143,7 @@ script = ExtResource("1_dqkch")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"sliding"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -184,6 +184,9 @@ one_shot = true
 [node name="MoveWhileWallJumpingCD" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1, 8)
 
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dashCD" to="." method="_on_dash_cd_timeout"]
