@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
 
-	if jump_buffer_timer > 0 and jumpCounter < jumpAmount and (is_on_floor() or !coyote_timer.is_stopped() or jumpCounter > 0):
+	if jump_buffer_timer > 0 and jumpCounter < jumpAmount and (is_on_floor() or !coyote_timer.is_stopped() or jumpCounter > 0) and not is_dashing:
 		# First jump
 		if jumpCounter == 0:
 			jump_sfx.play()
