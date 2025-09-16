@@ -26,6 +26,18 @@ const JUMP_BUFFER_TIME := 0.15
 const WALL_JUMP_PUSHBACK = 100
 var WALL_SLIDE_GRAVITY = 80
 
+const DASH_AMT: float = 450.0
+const DASH_TIME: float = 0.16
+
+var can_dash: bool = true
+var is_dashing: bool = false
+var dash_dir: Vector2 = Vector2.RIGHT
+var dash_timer2: float = 0.0
+
+var dash_freeze_time := 0.05  # freeze before dash
+var dash_trail_interval := 0.03
+var dash_trail_timer := 0.0
+
 # --- State ---
 var isSprinting: bool = false
 var doDash: bool = false
@@ -65,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
 
-	if jump_buffer_timer > 0 and jumpCounter < jumpAmount and (is_on_floor() or !coyote_timer.is_stopped() or jumpCounter > 0):
+	if jump_buffer_timer > 0 and jumpCounter < jumpAmount and (is_on_floor() or !coyote_timer.is_stopped() or jumpCounter > 0) and not is_dashing:
 		# First jump
 		if jumpCounter == 0:
 			jump_sfx.play()
@@ -82,6 +94,11 @@ func _physics_process(delta: float) -> void:
 	# Grounded / Airborne
 	# -----------------------
 	if is_on_floor() or !coyote_timer.is_stopped():
+		
+		if !is_dashing and !can_dash:
+			can_dash = true
+			update_dash_visuals()
+		
 		isWallJumping = false
 		if was_airborne:
 			# Landed → reset jumps
@@ -121,7 +138,7 @@ func _physics_process(delta: float) -> void:
 		var collision := get_slide_collision(0)
 		if collision:
 			var collider = collision.get_collider()
-			# 🚫 Prevent wall slide if it's the world border
+			#Prevent wall slide if it's the world border
 			if collider.name != "world_border":
 				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
 				animated_sprite_2d.play("sliding")
@@ -157,8 +174,9 @@ func _physics_process(delta: float) -> void:
 	# -----------------------
 	# Animations
 	# -----------------------
-	if not animated_sprite_2d.is_playing() or animated_sprite_2d.animation != "slide":
-		if is_on_floor():
+		if is_on_wall_only() and not is_on_floor() and not isWallJumping:
+			animated_sprite_2d.play("sliding")
+		elif is_on_floor():
 			animated_sprite_2d.play("idle" if direction == 0 else "walk")
 		else:
 			animated_sprite_2d.play("jump")
@@ -166,22 +184,24 @@ func _physics_process(delta: float) -> void:
 	# -----------------------
 	# Dash logic
 	# -----------------------
-	if Input.is_action_just_pressed("dash") and not dashCooldown:
-		dashDirection = -1 if animated_sprite_2d.flip_h else 1
-		doDash = true
-		dashCooldown = true
-		dash_sfx.play()
-		dash_timer.start()
-		dash_effect_timer.start()
-		dash_cd.start()
+	#if Input.is_action_just_pressed("dash") and not dashCooldown:
+		#dashDirection = -1 if animated_sprite_2d.flip_h else 1
+		#doDash = true
+		#dashCooldown = true
+		#dash_sfx.play()
+		#dash_timer.start()
+		#dash_effect_timer.start()
+		#dash_cd.start()
 
-	if doDash:
-		velocity.x = dashDirection * SPEED * DASH_MULTIPLIER
-		velocity.y = 0
-	elif direction and not isWallJumping:
+	#if doDash:
+		#velocity.x = dashDirection * SPEED * DASH_MULTIPLIER
+		#velocity.y = 0
+	if direction and not isWallJumping:
 		velocity.x = direction * SPEED
 	elif not isWallJumping:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	dash_logic(delta)
 
 	# -----------------------
 	# Apply movement
@@ -218,3 +238,40 @@ func _on_move_while_wall_jumping_cd_timeout() -> void:
 
 func die():
 	pass
+	
+func dash_logic(delta: float) -> void:
+	
+	var input_dir: Vector2 = Vector2(
+		Input.get_axis("left", "right"),
+		Input.get_axis("jump", "ui_down")
+	).normalized()
+	
+	if input_dir.x != 0:
+		dash_dir.x = input_dir.x
+		
+	if can_dash and Input.is_action_just_pressed("dash"):
+		var final_dash_dir: Vector2 = dash_dir
+		if input_dir.y != 0 and input_dir.x == 0:
+			final_dash_dir.x = 0
+		final_dash_dir.y = input_dir.y
+		
+		can_dash = false
+		is_dashing = true
+		dash_timer2 = DASH_TIME
+		
+		update_dash_visuals()
+		dash_dir = final_dash_dir.normalized()
+		
+	if is_dashing:
+		if not Input.is_action_just_pressed("jump"):
+			velocity = dash_dir * DASH_AMT
+		dash_timer2 -= delta
+		if dash_timer2 <= 0.0:
+			is_dashing = false
+			velocity *= 0.3  # keep a little leftover momentum
+
+func update_dash_visuals() -> void:
+	if can_dash:
+		modulate = Color("ffffff")
+	else:
+		modulate = Color("5d6060")

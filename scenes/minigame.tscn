@@ -1,35 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckx6xxrlrj4t4"]
+[gd_scene load_steps=6 format=3 uid="uid://ckx6xxrlrj4t4"]
 
 [ext_resource type="Script" uid="uid://l1ekav6qp22a" path="res://scripts/minigame.gd" id="1_5iev5"]
+[ext_resource type="Texture2D" uid="uid://dyujho4k24ncs" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0001.png" id="2_22ed1"]
+[ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_0dp5x"]
+[ext_resource type="PackedScene" uid="uid://bfgni6msfkt5v" path="res://scenes/ing_to_click.tscn" id="3_22ed1"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22ed1"]
+texture = ExtResource("2_22ed1")
+texture_margin_left = 4.05275
+texture_margin_top = 4.09636
+texture_margin_right = 4.05275
+texture_margin_bottom = 4.08757
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="StoreMinigame" type="CanvasLayer"]
 script = ExtResource("1_5iev5")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 319.0
-offset_bottom = 319.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -257.5
+offset_right = 276.0
+offset_bottom = 257.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_22ed1")
 
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.5
+offset_right = 256.5
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="Label" type="Label" parent="Panel/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 30
+text = "BUY THE INGREDIENTS!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 122.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -440.0
+offset_right = 207.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 32
+columns = 3
 
-[node name="TextureButton" type="TextureButton" parent="Panel/GridContainer"]
+[node name="PanelContainer" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
 layout_mode = 2
 
-[node name="TextureButton2" type="TextureButton" parent="Panel/GridContainer"]
+[node name="PanelContainer2" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
 layout_mode = 2
 
-[node name="TextureButton3" type="TextureButton" parent="Panel/GridContainer"]
+[node name="PanelContainer3" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
 layout_mode = 2
 
-[node name="TextureButton4" type="TextureButton" parent="Panel/GridContainer"]
+[node name="PanelContainer4" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
 layout_mode = 2
 
-[node name="TextureButton5" type="TextureButton" parent="Panel/GridContainer"]
+[node name="PanelContainer5" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+layout_mode = 2
+
+[node name="PanelContainer6" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
 layout_mode = 2

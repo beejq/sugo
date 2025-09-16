@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://t01rjtuo78re"]
+[gd_scene load_steps=22 format=3 uid="uid://t01rjtuo78re"]
 
 [ext_resource type="Script" uid="uid://d2rfj3a7qbbfi" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="2_g2els"]
 [ext_resource type="AudioStream" uid="uid://dg1l7jaewc66x" path="res://assets/Sounds/Jump4.wav" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://xtdsseny3uol" path="res://assets/larry sliding.png" id="3_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://d3iwav5mtqwoe" path="res://assets/Sounds/Jump5.wav" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://cuj6k3ykmq5tv" path="res://assets/Sounds/Random18.wav" id="5_qlg0r"]
 
@@ -25,6 +26,10 @@ region = Rect2(32, 693, 32, 33)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 561, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("3_tuyoq")
+region = Rect2(66, 693, 33, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_g2els")
@@ -68,7 +73,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_smehm")
+"texture": SubResource("AtlasTexture_3v2ag")
 }],
 "loop": true,
 "name": &"sliding",
@@ -143,7 +148,7 @@ script = ExtResource("1_dqkch")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"idle"
+animation = &"sliding"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
