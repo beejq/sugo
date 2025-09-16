@@ -138,7 +138,7 @@ func _physics_process(delta: float) -> void:
 		var collision := get_slide_collision(0)
 		if collision:
 			var collider = collision.get_collider()
-			# 🚫 Prevent wall slide if it's the world border
+			#Prevent wall slide if it's the world border
 			if collider.name != "world_border":
 				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
 				animated_sprite_2d.play("sliding")
@@ -174,8 +174,9 @@ func _physics_process(delta: float) -> void:
 	# -----------------------
 	# Animations
 	# -----------------------
-	if not animated_sprite_2d.is_playing() or animated_sprite_2d.animation != "slide":
-		if is_on_floor():
+		if is_on_wall_only() and not is_on_floor() and not isWallJumping:
+			animated_sprite_2d.play("sliding")
+		elif is_on_floor():
 			animated_sprite_2d.play("idle" if direction == 0 else "walk")
 		else:
 			animated_sprite_2d.play("jump")
