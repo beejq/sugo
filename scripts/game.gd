@@ -1,12 +1,10 @@
 extends Node2D
 
+@onready var timer: CanvasLayer = $Timer
+
 func _ready() -> void:
 	Transition.fade_out()
-
-
-func _on_spikes_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	
+	await get_tree().create_timer(5.0).timeout
+	
+	timer.visible = true

@@ -125,7 +125,6 @@ func _physics_process(delta: float) -> void:
 			var collider = collision.get_collider()
 			# Only allow wall jump if not the world border
 			if collider.name != "world_border" and collider.name != "world_border2":
-				animated_sprite_2d.play("sliding")
 				move_while_wall_jumping_cd.start()
 				isWallJumping = true
 				velocity.y = JUMP_VELOCITY
@@ -141,7 +140,6 @@ func _physics_process(delta: float) -> void:
 			#Prevent wall slide if it's the world border
 			if collider.name != "world_border":
 				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
-				animated_sprite_2d.play("sliding")
 
 	# -----------------------
 	# Variable jump height
@@ -154,10 +152,10 @@ func _physics_process(delta: float) -> void:
 	# -----------------------
 	var direction := Input.get_axis("left", "right")
 
-	# Flip + cancel sprint if sharp turn
-	if direction != 0:
-		var input_left = direction < 0
-		animated_sprite_2d.flip_h = input_left
+	## Flip + cancel sprint if sharp turn
+	#if direction != 0:
+		#var input_left = direction < 0
+		#animated_sprite_2d.flip_h = input_left
 #
 		#if isSprinting and ((velocity.x > 0 and input_left) or (velocity.x < 0 and not input_left)):
 			#isSprinting = false
@@ -171,15 +169,18 @@ func _physics_process(delta: float) -> void:
 	#else:
 		#SPEED = max(SPEED - delta * 80, 120)
 
-	# -----------------------
-	# Animations
-	# -----------------------
-		if is_on_wall_only() and not is_on_floor() and not isWallJumping:
-			animated_sprite_2d.play("sliding")
-		elif is_on_floor():
-			animated_sprite_2d.play("idle" if direction == 0 else "walk")
-		else:
-			animated_sprite_2d.play("jump")
+	# --- Animations ---
+	# Flip sprite if moving
+	if direction != 0:
+		animated_sprite_2d.flip_h = direction < 0
+
+	# Animation priority
+	if is_on_wall_only() and not is_on_floor() and not isWallJumping:
+		animated_sprite_2d.play("sliding")
+	elif not is_on_floor():
+		animated_sprite_2d.play("jump")
+	else:
+		animated_sprite_2d.play("walk" if direction != 0 else "idle")
 
 	# -----------------------
 	# Dash logic
