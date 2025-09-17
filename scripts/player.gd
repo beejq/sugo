@@ -45,6 +45,7 @@ var dashDirection: int
 var dashCooldown: bool = false
 var isWallJumping: bool = false
 var isGrounded: bool = true
+var canMove:bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -53,8 +54,27 @@ var was_airborne: bool = false
 # --- Jump buffer vars ---
 var jump_buffer_timer := 0.0
 
+func _ready() -> void:
+	# Freeze Player at Start
+	
+	if not Gamestate.intro_done:
+		canMove = false
+		await get_tree().create_timer(5.0).timeout
+		canMove = true
+		Gamestate.intro_done = true
+	else:
+		canMove = true
 
 func _physics_process(delta: float) -> void:
+	
+	print(canMove)
+	
+	# Freeze Player at Start
+	if not canMove:
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle")
+		move_and_slide()
+		return
 	
 	# Particle Effect on Landing
 	

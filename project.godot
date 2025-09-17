@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Transition="*res://scenes/transition.tscn"
 Gamestate="*res://scripts/gamestate.gd"
+TimerManager="*res://scripts/timer_manager.gd"
+Minigame="*res://scripts/minigame.gd"
 
 [display]
 
