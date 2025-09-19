@@ -45,6 +45,7 @@ var dashDirection: int
 var dashCooldown: bool = false
 var isWallJumping: bool = false
 var isGrounded: bool = true
+var canMove:bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -53,8 +54,27 @@ var was_airborne: bool = false
 # --- Jump buffer vars ---
 var jump_buffer_timer := 0.0
 
+func _ready() -> void:
+	# Freeze Player at Start
+	
+	if not Gamestate.intro_done:
+		canMove = false
+		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
+		canMove = true
+		Gamestate.intro_done = true
+	else:
+		canMove = true
 
 func _physics_process(delta: float) -> void:
+	
+	#print(canMove)	
+	
+	# Freeze Player at Start
+	if not canMove:
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("idle")
+		move_and_slide()
+		return
 	
 	# Particle Effect on Landing
 	
@@ -125,7 +145,6 @@ func _physics_process(delta: float) -> void:
 			var collider = collision.get_collider()
 			# Only allow wall jump if not the world border
 			if collider.name != "world_border" and collider.name != "world_border2":
-				animated_sprite_2d.play("sliding")
 				move_while_wall_jumping_cd.start()
 				isWallJumping = true
 				velocity.y = JUMP_VELOCITY
@@ -141,7 +160,6 @@ func _physics_process(delta: float) -> void:
 			#Prevent wall slide if it's the world border
 			if collider.name != "world_border":
 				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
-				animated_sprite_2d.play("sliding")
 
 	# -----------------------
 	# Variable jump height
@@ -154,10 +172,10 @@ func _physics_process(delta: float) -> void:
 	# -----------------------
 	var direction := Input.get_axis("left", "right")
 
-	# Flip + cancel sprint if sharp turn
-	if direction != 0:
-		var input_left = direction < 0
-		animated_sprite_2d.flip_h = input_left
+	## Flip + cancel sprint if sharp turn
+	#if direction != 0:
+		#var input_left = direction < 0
+		#animated_sprite_2d.flip_h = input_left
 #
 		#if isSprinting and ((velocity.x > 0 and input_left) or (velocity.x < 0 and not input_left)):
 			#isSprinting = false
@@ -171,15 +189,18 @@ func _physics_process(delta: float) -> void:
 	#else:
 		#SPEED = max(SPEED - delta * 80, 120)
 
-	# -----------------------
-	# Animations
-	# -----------------------
-		if is_on_wall_only() and not is_on_floor() and not isWallJumping:
-			animated_sprite_2d.play("sliding")
-		elif is_on_floor():
-			animated_sprite_2d.play("idle" if direction == 0 else "walk")
-		else:
-			animated_sprite_2d.play("jump")
+	# --- Animations ---
+	# Flip sprite if moving
+	if direction != 0:
+		animated_sprite_2d.flip_h = direction < 0
+
+	# Animation priority
+	if is_on_wall_only() and not is_on_floor() and not isWallJumping:
+		animated_sprite_2d.play("sliding")
+	elif not is_on_floor():
+		animated_sprite_2d.play("jump")
+	else:
+		animated_sprite_2d.play("walk" if direction != 0 else "idle")
 
 	# -----------------------
 	# Dash logic

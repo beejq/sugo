@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfuv8pp47q8d3"]
+
+[ext_resource type="Script" uid="uid://7g3enptj7lci" path="res://scripts/tutorial detection anim.gd" id="1_sadr0"]
+[ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="2_lg3t8"]
+[ext_resource type="Texture2D" uid="uid://h856qjn3mkla" path="res://assets/ui/Keyboard Letters and Symbols.png" id="2_sadr0"]
+
+[node name="walk tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 236.0
+offset_top = 102.0
+offset_right = 236.0
+offset_bottom = 102.0
+script = ExtResource("1_sadr0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 22.0
+offset_bottom = 2.0
+theme_override_fonts/font = ExtResource("2_lg3t8")
+theme_override_font_sizes/font_size = 10
+text = "To move"
+uppercase = true
+
+[node name="up" type="Sprite2D" parent="."]
+texture = ExtResource("2_sadr0")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(15, 13)
+texture = ExtResource("2_sadr0")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="down" type="Sprite2D" parent="."]
+position = Vector2(0, 13)
+texture = ExtResource("2_sadr0")
+region_enabled = true
+region_rect = Rect2(17, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(-16, 13)
+texture = ExtResource("2_sadr0")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)

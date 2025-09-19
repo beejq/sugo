@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfgni6msfkt5v"]
+[gd_scene load_steps=6 format=3 uid="uid://bfgni6msfkt5v"]
 
 [ext_resource type="Texture2D" uid="uid://bljkfqjltkjdp" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0013.png" id="1_173pw"]
+[ext_resource type="Script" uid="uid://cvyiae5e6yqpw" path="res://scripts/ing_to_click.gd" id="2_owo2w"]
 [ext_resource type="Texture2D" uid="uid://dejoncgdrfsrq" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/boba_coffee.png" id="2_yh2ho"]
 [ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_owo2w"]
 
@@ -27,6 +28,7 @@ scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_aai0i")
+script = ExtResource("2_owo2w")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -55,9 +57,15 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_owo2w")
 theme_override_font_sizes/font_size = 20
 text = "COFFEE"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 2

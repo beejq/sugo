@@ -25,6 +25,5 @@ position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_1gq5j")
 
 [node name="StoreMinigame" parent="." instance=ExtResource("3_6tlvc")]
-visible = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

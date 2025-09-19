@@ -1,17 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckx6xxrlrj4t4"]
+[gd_scene load_steps=18 format=3 uid="uid://ckx6xxrlrj4t4"]
 
 [ext_resource type="Script" uid="uid://l1ekav6qp22a" path="res://scripts/minigame.gd" id="1_5iev5"]
-[ext_resource type="Texture2D" uid="uid://dyujho4k24ncs" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0001.png" id="2_22ed1"]
+[ext_resource type="Texture2D" uid="uid://dhx2lbnvoijuf" path="res://assets/ui/cozy gui/Cozy GUI/Tileset/Cozy GUI - Tileset (By Pizza Doggy).png" id="2_0dp5x"]
 [ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_0dp5x"]
-[ext_resource type="PackedScene" uid="uid://bfgni6msfkt5v" path="res://scenes/ing_to_click.tscn" id="3_22ed1"]
+[ext_resource type="Script" uid="uid://dcxisja2o48ax" path="res://scripts/clickable panel.gd" id="3_qfvgk"]
+[ext_resource type="Texture2D" uid="uid://bljkfqjltkjdp" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0013.png" id="5_7ju2r"]
+[ext_resource type="Script" uid="uid://cvyiae5e6yqpw" path="res://scripts/ing_to_click.gd" id="6_802es"]
+[ext_resource type="Texture2D" uid="uid://dejoncgdrfsrq" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/boba_coffee.png" id="6_jwi4h"]
+[ext_resource type="Texture2D" uid="uid://cqe425opxeate" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/soda_coke.png" id="8_8e78p"]
+[ext_resource type="Texture2D" uid="uid://rkd0em4flb1l" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/canned_soup.png" id="9_3u4ns"]
+[ext_resource type="Texture2D" uid="uid://dodvsq65awskg" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/cake_strawberry.png" id="10_okghe"]
+[ext_resource type="Texture2D" uid="uid://o2sa4pg5aocp" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/eggs_white.png" id="11_tumst"]
+[ext_resource type="Texture2D" uid="uid://br4wfb4fqfu3a" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/fruit_apple.png" id="12_8xbqi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22ed1"]
-texture = ExtResource("2_22ed1")
-texture_margin_left = 4.05275
-texture_margin_top = 4.09636
-texture_margin_right = 4.05275
-texture_margin_bottom = 4.08757
-region_rect = Rect2(0, 0, 32, 32)
+texture = ExtResource("2_0dp5x")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 9.0
+region_rect = Rect2(3, 2, 42, 44)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4spdj"]
+texture = ExtResource("5_7ju2r")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ju2r"]
+bg_color = Color(0, 0, 0, 0)
+shadow_color = Color(1, 1, 1, 0.0745098)
+shadow_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802es"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 36
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_802es"]
 
 [node name="StoreMinigame" type="CanvasLayer"]
 script = ExtResource("1_5iev5")
@@ -23,26 +50,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -276.0
-offset_top = -257.5
+offset_top = -234.0
 offset_right = 276.0
-offset_bottom = 257.5
+offset_bottom = 303.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_22ed1")
+script = ExtResource("3_qfvgk")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel"]
+[node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -256.5
+offset_top = 35.0
 offset_right = 256.5
-offset_bottom = 72.0
+offset_bottom = 80.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 16
-
-[node name="Label" type="Label" parent="Panel/MarginContainer2"]
-layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.294118, 0.25098, 0.180392, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_0dp5x")
 theme_override_font_sizes/font_size = 30
 text = "BUY THE INGREDIENTS!"
@@ -59,6 +86,7 @@ anchor_bottom = 1.0
 offset_left = -207.0
 offset_top = -440.0
 offset_right = 207.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -67,20 +95,303 @@ theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 32
 columns = 3
 
-[node name="PanelContainer" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="ing1" type="PanelContainer" parent="Panel/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
 
-[node name="PanelContainer2" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing1"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
 
-[node name="PanelContainer3" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing1/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
 
-[node name="PanelContainer4" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="PanelContainer5" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("6_jwi4h")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="PanelContainer6" parent="Panel/GridContainer" instance=ExtResource("3_22ed1")]
+[node name="Label" type="Label" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "Coffee"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button1" type="Button" parent="Panel/GridContainer/ing1"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing2" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_8e78p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "Coke"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button2" type="Button" parent="Panel/GridContainer/ing2"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing3" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_3u4ns")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "SOUP"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button3" type="Button" parent="Panel/GridContainer/ing3"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing4" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("10_okghe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "Cake"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button4" type="Button" parent="Panel/GridContainer/ing4"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing5" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing5/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("11_tumst")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "Eggs"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button5" type="Button" parent="Panel/GridContainer/ing5"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing6" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+script = ExtResource("6_802es")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing6"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing6/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("12_8xbqi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_0dp5x")
+theme_override_font_sizes/font_size = 20
+text = "Apple"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button6" type="Button" parent="Panel/GridContainer/ing6"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[connection signal="pressed" from="Panel/GridContainer/ing1/button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing2/button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing3/button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing4/button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing5/button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing6/button6" to="." method="_on_button_6_pressed"]
