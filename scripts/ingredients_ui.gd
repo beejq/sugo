@@ -7,7 +7,7 @@ extends CanvasLayer
 	$Panel/VBoxContainer/ingredient3/label
 ]
 
-var ingredients = ["Eggs", "Coffee", "Apple"]
+var ingredients = Gamestate.tutorial_ingredients
 
 func _ready() -> void:
 	if not Gamestate.ingredients_shown:

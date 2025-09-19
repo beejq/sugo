@@ -10,5 +10,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("Time for Minigame!")
 		
 		store_minigame.visible = true
-		
-		store_minigame.visible = false

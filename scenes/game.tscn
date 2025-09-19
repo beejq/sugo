@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=53 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://c0uprgyfi2s3j" path="res://scripts/game.gd" id="1_vtaks"]
@@ -16,6 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cldxi0rl34qa4" path="res://scenes/tindahan.tscn" id="14_trtic"]
 [ext_resource type="Script" uid="uid://ddxyfqh28rjt8" path="res://scripts/timer.gd" id="15_ir15t"]
 [ext_resource type="FontFile" uid="uid://bach2670knbhg" path="res://assets/font/quaver.ttf" id="16_ca42v"]
+[ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="18_1kice"]
+[ext_resource type="Script" uid="uid://b8rwle7i7hbk3" path="res://scripts/jumping_tutorial.gd" id="18_5newe"]
+[ext_resource type="Texture2D" uid="uid://h856qjn3mkla" path="res://assets/ui/Keyboard Letters and Symbols.png" id="19_1kice"]
+[ext_resource type="Texture2D" uid="uid://bbdbqaqrinxfw" path="res://assets/ui/Keyboard Extras.png" id="19_5newe"]
+[ext_resource type="Script" uid="uid://7g3enptj7lci" path="res://scripts/tutorial detection anim.gd" id="21_5newe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("3_lbhrr")
@@ -1109,11 +1114,132 @@ size = Vector2(8, 25)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rysoc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kice"]
+size = Vector2(64, 69)
+
+[sub_resource type="Animation" id="Animation_37s47"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5newe"]
+resource_name = "fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bt5mj"]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1j6l"]
+_data = {
+&"RESET": SubResource("Animation_37s47"),
+&"fade in": SubResource("Animation_5newe"),
+&"fade out": SubResource("Animation_bt5mj")
+}
+
+[sub_resource type="Animation" id="Animation_e1j6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pl11u"]
+_data = {
+&"RESET": SubResource("Animation_e1j6l")
+}
+
+[sub_resource type="Animation" id="Animation_bhx41"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qnb83"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sww3w"]
+_data = {
+&"fade in": SubResource("Animation_bhx41"),
+&"fade out": SubResource("Animation_qnb83")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5newe"]
+size = Vector2(80, 80.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37s47"]
+size = Vector2(176.5, 80.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
+size = Vector2(188.25, 113.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt5mj"]
+size = Vector2(176.5, 182)
+
 [node name="Tutorial Level" type="Node2D"]
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-51, 80)
+position = Vector2(-109, 83)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -1313,3 +1439,433 @@ theme_override_fonts/font = ExtResource("16_ca42v")
 theme_override_font_sizes/font_size = 40
 text = "000"
 horizontal_alignment = 2
+
+[node name="Jumping Tutorial" type="Node" parent="."]
+script = ExtResource("18_5newe")
+
+[node name="Area2D" type="Area2D" parent="Jumping Tutorial"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumping Tutorial/Area2D"]
+position = Vector2(80, 93.5)
+shape = SubResource("RectangleShape2D_1kice")
+
+[node name="Control" type="Control" parent="Jumping Tutorial"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Jumping Tutorial/Control"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 33.0
+offset_right = 156.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "TO JUMP"
+
+[node name="Label2" type="Label" parent="Jumping Tutorial/Control"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 47.0
+offset_right = 179.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "OR"
+
+[node name="Sprite2D" type="Sprite2D" parent="Jumping Tutorial/Control"]
+position = Vector2(119, 53)
+texture = ExtResource("19_5newe")
+region_enabled = true
+region_rect = Rect2(65, 34, 30, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Jumping Tutorial/Control"]
+position = Vector2(159, 53)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Jumping Tutorial/Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_e1j6l")
+}
+
+[node name="Walk Tutorial" type="Node" parent="."]
+script = ExtResource("21_5newe")
+
+[node name="Area2D" type="Area2D" parent="Walk Tutorial"]
+position = Vector2(-132, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walk Tutorial/Area2D"]
+position = Vector2(80, 93.5)
+shape = SubResource("RectangleShape2D_1kice")
+
+[node name="Control" type="Control" parent="Walk Tutorial"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -172.0
+offset_top = -14.0
+offset_right = -132.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="Walk Tutorial/Control"]
+layout_mode = 0
+offset_left = 104.5
+offset_top = 15.0
+offset_right = 146.5
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "To move"
+uppercase = true
+
+[node name="up" type="Sprite2D" parent="Walk Tutorial/Control"]
+position = Vector2(124.5, 36)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="right" type="Sprite2D" parent="Walk Tutorial/Control"]
+position = Vector2(139.5, 49)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="down" type="Sprite2D" parent="Walk Tutorial/Control"]
+position = Vector2(124.5, 49)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(17, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="Walk Tutorial/Control"]
+position = Vector2(108.5, 49)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Walk Tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_pl11u"),
+&"tutorial anims": SubResource("AnimationLibrary_sww3w")
+}
+
+[node name="Double Jump Tutorial" type="Node" parent="."]
+script = ExtResource("21_5newe")
+
+[node name="Area2D" type="Area2D" parent="Double Jump Tutorial"]
+position = Vector2(-132, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Double Jump Tutorial/Area2D"]
+position = Vector2(380, 72.25)
+shape = SubResource("RectangleShape2D_5newe")
+
+[node name="Control" type="Control" parent="Double Jump Tutorial"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 194.0
+offset_top = -44.0
+offset_right = 234.0
+offset_bottom = -4.0
+
+[node name="Label" type="Label" parent="Double Jump Tutorial/Control"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 15.0
+offset_right = 166.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "To Double jump"
+uppercase = true
+
+[node name="Label2" type="Label" parent="Double Jump Tutorial/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 29.0
+offset_right = 170.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "OR"
+
+[node name="Label3" type="Label" parent="Double Jump Tutorial/Control"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "TWICE"
+
+[node name="Sprite2D" type="Sprite2D" parent="Double Jump Tutorial/Control"]
+position = Vector2(110, 35)
+texture = ExtResource("19_5newe")
+region_enabled = true
+region_rect = Rect2(65, 34, 30, 12)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Double Jump Tutorial/Control"]
+position = Vector2(150, 35)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Double Jump Tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_pl11u"),
+&"tutorial anims": SubResource("AnimationLibrary_sww3w")
+}
+
+[node name="Dash Tutorial" type="Node" parent="."]
+script = ExtResource("21_5newe")
+
+[node name="Area2D" type="Area2D" parent="Dash Tutorial"]
+position = Vector2(-132, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash Tutorial/Area2D"]
+position = Vector2(775.5, 10)
+shape = SubResource("RectangleShape2D_37s47")
+
+[node name="Control" type="Control" parent="Dash Tutorial"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 573.0
+offset_top = -99.0
+offset_right = 613.0
+offset_bottom = -59.0
+
+[node name="Label" type="Label" parent="Dash Tutorial/Control"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 15.0
+offset_right = 156.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "To DASH"
+uppercase = true
+
+[node name="Label3" type="Label" parent="Dash Tutorial/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 51.0
+offset_right = 138.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "+"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Dash Tutorial/Control"]
+position = Vector2(133, 72)
+texture = ExtResource("19_5newe")
+region_enabled = true
+region_rect = Rect2(2, 18, 28, 12)
+
+[node name="up" type="Sprite2D" parent="Dash Tutorial/Control"]
+position = Vector2(132.5, 35)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="right" type="Sprite2D" parent="Dash Tutorial/Control"]
+position = Vector2(147.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="down" type="Sprite2D" parent="Dash Tutorial/Control"]
+position = Vector2(132.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(17, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="Dash Tutorial/Control"]
+position = Vector2(116.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dash Tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_pl11u"),
+&"tutorial anims": SubResource("AnimationLibrary_sww3w")
+}
+
+[node name="Dash Tutorial2" type="Node" parent="."]
+script = ExtResource("21_5newe")
+
+[node name="Area2D" type="Area2D" parent="Dash Tutorial2"]
+position = Vector2(-132, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash Tutorial2/Area2D"]
+position = Vector2(1811.13, -152.375)
+shape = SubResource("RectangleShape2D_e1j6l")
+
+[node name="Control" type="Control" parent="Dash Tutorial2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1503.0
+offset_top = -290.0
+offset_right = 1543.0
+offset_bottom = -250.0
+
+[node name="Label" type="Label" parent="Dash Tutorial2/Control"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 15.0
+offset_right = 156.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "To DASH"
+uppercase = true
+
+[node name="Label3" type="Label" parent="Dash Tutorial2/Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 51.0
+offset_right = 138.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "+"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Dash Tutorial2/Control"]
+position = Vector2(133, 72)
+texture = ExtResource("19_5newe")
+region_enabled = true
+region_rect = Rect2(2, 18, 28, 12)
+
+[node name="up" type="Sprite2D" parent="Dash Tutorial2/Control"]
+position = Vector2(132.5, 35)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(1, 2, 13, 12)
+
+[node name="right" type="Sprite2D" parent="Dash Tutorial2/Control"]
+position = Vector2(147.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="down" type="Sprite2D" parent="Dash Tutorial2/Control"]
+position = Vector2(132.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(17, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="Dash Tutorial2/Control"]
+position = Vector2(116.5, 48)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dash Tutorial2"]
+libraries = {
+&"": SubResource("AnimationLibrary_pl11u"),
+&"tutorial anims": SubResource("AnimationLibrary_sww3w")
+}
+
+[node name="Wall Jump and Wall Slide" type="Node" parent="."]
+script = ExtResource("21_5newe")
+
+[node name="Area2D" type="Area2D" parent="Wall Jump and Wall Slide"]
+position = Vector2(-132, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall Jump and Wall Slide/Area2D"]
+position = Vector2(1068.75, 9)
+shape = SubResource("RectangleShape2D_bt5mj")
+
+[node name="Control" type="Control" parent="Wall Jump and Wall Slide"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 939.0
+offset_top = -72.0
+offset_right = 979.0
+offset_bottom = -32.0
+
+[node name="Label" type="Label" parent="Wall Jump and Wall Slide/Control"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 14.0
+offset_right = 174.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "To wall jump"
+uppercase = true
+
+[node name="Label2" type="Label" parent="Wall Jump and Wall Slide/Control"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 31.0
+offset_right = 146.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "OR"
+uppercase = true
+
+[node name="Label3" type="Label" parent="Wall Jump and Wall Slide/Control"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 43.0
+offset_right = 144.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("18_1kice")
+theme_override_font_sizes/font_size = 10
+text = "+"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall Jump and Wall Slide/Control"]
+position = Vector2(139, 66)
+texture = ExtResource("19_5newe")
+region_enabled = true
+region_rect = Rect2(65, 34, 30, 12)
+
+[node name="right" type="Sprite2D" parent="Wall Jump and Wall Slide/Control"]
+position = Vector2(154.5, 38)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(49, 2, 13, 12)
+
+[node name="left" type="Sprite2D" parent="Wall Jump and Wall Slide/Control"]
+position = Vector2(123.5, 38)
+texture = ExtResource("19_1kice")
+region_enabled = true
+region_rect = Rect2(33, 2, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wall Jump and Wall Slide"]
+libraries = {
+&"": SubResource("AnimationLibrary_pl11u"),
+&"tutorial anims": SubResource("AnimationLibrary_sww3w")
+}
+
+[connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Walk Tutorial/Area2D" to="Walk Tutorial" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Walk Tutorial/Area2D" to="Walk Tutorial" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Double Jump Tutorial/Area2D" to="Double Jump Tutorial" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Double Jump Tutorial/Area2D" to="Double Jump Tutorial" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Dash Tutorial/Area2D" to="Dash Tutorial" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Dash Tutorial/Area2D" to="Dash Tutorial" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Dash Tutorial2/Area2D" to="Dash Tutorial2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Dash Tutorial2/Area2D" to="Dash Tutorial2" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Wall Jump and Wall Slide/Area2D" to="Wall Jump and Wall Slide" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Wall Jump and Wall Slide/Area2D" to="Wall Jump and Wall Slide" method="_on_area_2d_body_exited"]

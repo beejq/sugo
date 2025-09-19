@@ -59,7 +59,7 @@ func _ready() -> void:
 	
 	if not Gamestate.intro_done:
 		canMove = false
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
 		canMove = true
 		Gamestate.intro_done = true
 	else:
@@ -67,7 +67,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	print(canMove)
+	#print(canMove)	
 	
 	# Freeze Player at Start
 	if not canMove:
