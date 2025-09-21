@@ -15,6 +15,9 @@ extends CharacterBody2D
 @onready var world_border_2: StaticBody2D = $"../world_border2"
 @onready var dust = preload("res://scenes/dust.tscn")
 @onready var dust_location: Marker2D = $Marker2D
+@onready var death_anim: AnimationPlayer = $death
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 # --- Configurable stats ---
@@ -33,6 +36,7 @@ var can_dash: bool = true
 var is_dashing: bool = false
 var dash_dir: Vector2 = Vector2.RIGHT
 var dash_timer2: float = 0.0
+var dash_cooldown: float = 1
 
 var dash_freeze_time := 0.05  # freeze before dash
 var dash_trail_interval := 0.03
@@ -46,6 +50,7 @@ var dashCooldown: bool = false
 var isWallJumping: bool = false
 var isGrounded: bool = true
 var canMove:bool = false
+var isDead: bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -59,13 +64,22 @@ func _ready() -> void:
 	
 	if not Gamestate.intro_done:
 		canMove = false
-		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
+		await get_tree().create_timer(0.0).timeout #CHANGE LATER to 5 Seconds
 		canMove = true
 		Gamestate.intro_done = true
 	else:
 		canMove = true
 
 func _physics_process(delta: float) -> void:
+	
+	# If dead
+	if isDead:
+		velocity += get_gravity() * delta
+		move_and_slide()
+		return
+	
+	# Dash Cooldown
+	dash_cooldown = clampf(dash_cooldown - delta, 0.0, 1.0)
 	
 	#print(canMove)	
 	
@@ -258,7 +272,19 @@ func _on_move_while_wall_jumping_cd_timeout() -> void:
 	#jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)
 
 func die():
-	pass
+	if isDead:
+		return
+	isDead = true
+	print("Player died!")
+	collision_shape_2d.disabled = true
+	set_deferred("collision_layer", 0)
+	set_deferred("collision_mask", 0)
+	
+	death_anim.play("spin death")
+	
+	velocity = Vector2(50, -300)
+	camera_2d.shake(12.0,0.3)
+
 	
 func dash_logic(delta: float) -> void:
 	
@@ -270,15 +296,16 @@ func dash_logic(delta: float) -> void:
 	if input_dir.x != 0:
 		dash_dir.x = input_dir.x
 		
-	if can_dash and Input.is_action_just_pressed("dash"):
+	if can_dash and Input.is_action_just_pressed("dash") and dash_cooldown == 0:
 		var final_dash_dir: Vector2 = dash_dir
 		if input_dir.y != 0 and input_dir.x == 0:
 			final_dash_dir.x = 0
 		final_dash_dir.y = input_dir.y
 		
-		can_dash = false
 		is_dashing = true
+		can_dash = false
 		dash_timer2 = DASH_TIME
+		dash_cooldown = 1.0
 		
 		update_dash_visuals()
 		dash_dir = final_dash_dir.normalized()

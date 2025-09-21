@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Utos ni Mama"
-run/main_scene="uid://bahpo4o5s3h6e"
+run/main_scene="uid://cg6d852ke14wa"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,8 +25,7 @@ Minigame="*res://scripts/minigame.gd"
 [display]
 
 window/size/borderless=true
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
 
 [input]
 

@@ -5,18 +5,18 @@ var time: float = 0.0
 var running: bool = true
 var freeze: bool = true
 
-func _ready() -> void:
-	if freeze:
-		await get_tree().create_timer(5.0).timeout
-		freeze = false
-
 func _process(delta: float) -> void:
 	if Gamestate.level_finished:
 		pause()
 	
-	if running and not freeze:
+	if running and not freeze and not Gamestate.in_menu:
 		time += delta
-			
+
+func start_timer_after_delay() -> void:
+	if freeze:
+		await get_tree().create_timer(5.0).timeout
+		freeze = false
+		running = true			
 
 func reset() -> void:
 	time = 0.0

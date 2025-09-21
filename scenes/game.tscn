@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=71 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d48stx5k5mx7" path="res://assets/tiles.png" id="2_lnu2h"]
 [ext_resource type="Shader" uid="uid://b617517a1dh3s" path="res://shaders/grass.gdshader" id="3_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://dro3xdo1tqi4g" path="res://scripts/camera_2d.gd" id="3_sww3w"]
 [ext_resource type="PackedScene" uid="uid://d1ufbvlqqnucq" path="res://scenes/ingredients_ui.tscn" id="4_lbhrr"]
 [ext_resource type="Shader" uid="uid://bjiednvy40xh0" path="res://shaders/tree.gdshader" id="5_37s47"]
 [ext_resource type="Texture2D" uid="uid://c27o3cuvn44py" path="res://assets/parallax/Clouds2/summer8/1.png" id="5_iywne"]
@@ -2089,12 +2090,13 @@ adjustment_saturation = 1.2
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-36, 81)
+position = Vector2(-70, 83)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+script = ExtResource("3_sww3w")
 
 [node name="Grass" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_e1j6l")

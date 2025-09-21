@@ -1,0 +1,308 @@
+[gd_scene load_steps=16 format=3 uid="uid://cg6d852ke14wa"]
+
+[ext_resource type="Script" uid="uid://csy73kygser83" path="res://scripts/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dyu81vtoi1qqc" path="res://assets/color_background_1.png" id="2_bqqt6"]
+[ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="4_wu84c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
+shader = ExtResource("1_bqqt6")
+shader_parameter/speed = 1.0
+
+[sub_resource type="Gradient" id="Gradient_8ln24"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rtw2f"]
+gradient = SubResource("Gradient_8ln24")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ln24"]
+atlas = ExtResource("4_wu84c")
+region = Rect2(0, 528, 31, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtw2f"]
+atlas = ExtResource("4_wu84c")
+region = Rect2(31, 528, 31, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oa1go"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ln24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtw2f")
+}],
+"loop": true,
+"name": &"idle menu",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_8ln24"]
+resource_name = "title move in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game title:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.287175, 2.82843),
+"update": 0,
+"values": [Vector2(1191, 38), Vector2(520, 38)]
+}
+
+[sub_resource type="Animation" id="Animation_rtw2f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1191, 38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer2/VBoxContainer/start/start label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(687, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer2/VBoxContainer/credits/credits label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(752, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer2/VBoxContainer/quit/quit label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(710, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_oa1go"]
+resource_name = "menu selection in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer2/VBoxContainer/start/start label:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(687, 12), Vector2(355, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer2/VBoxContainer/credits/credits label:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(752, 12), Vector2(420, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer2/VBoxContainer/quit/quit label:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(710, 12), Vector2(378, 12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oa1go"]
+_data = {
+&"RESET": SubResource("Animation_rtw2f"),
+&"menu selection in": SubResource("Animation_oa1go"),
+&"title move in": SubResource("Animation_8ln24")
+}
+
+[node name="main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ln24")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_vertical_guides_ = [1084.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_8ln24")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bqqt6")
+stretch_mode = 1
+
+[node name="game title" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_left = 1191.0
+offset_top = 38.0
+offset_right = 1767.0
+offset_bottom = 294.0
+theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
+theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 256
+text = "SUGO"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 279.0
+offset_right = 1084.0
+offset_bottom = 719.0
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = -12
+
+[node name="start" type="TextureButton" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_rtw2f")
+stretch_mode = 0
+
+[node name="start label" type="Label" parent="VBoxContainer2/VBoxContainer/start"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 111.0
+offset_top = -20.0
+offset_right = 334.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
+theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 40
+text = "Start Game"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="credits" type="TextureButton" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_rtw2f")
+
+[node name="credits label" type="Label" parent="VBoxContainer2/VBoxContainer/credits"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = -20.0
+offset_right = 334.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
+theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="quit" type="TextureButton" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("GradientTexture2D_rtw2f")
+
+[node name="quit label" type="Label" parent="VBoxContainer2/VBoxContainer/quit"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 134.0
+offset_top = -20.0
+offset_right = 334.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
+theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 40
+text = "Quit Game"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(192, 428)
+scale = Vector2(17.9597, 18.0076)
+sprite_frames = SubResource("SpriteFrames_oa1go")
+animation = &"idle menu"
+autoplay = "idle menu"
+frame_progress = 0.599372
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oa1go")
+}
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/quit" to="." method="_on_quit_pressed"]

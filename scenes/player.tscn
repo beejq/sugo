@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://t01rjtuo78re"]
+[gd_scene load_steps=25 format=3 uid="uid://t01rjtuo78re"]
 
 [ext_resource type="Script" uid="uid://d2rfj3a7qbbfi" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="2_g2els"]
@@ -140,6 +140,44 @@ _data = {
 &"squash": SubResource("Animation_fjrip")
 }
 
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "spin death"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.466517),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_ur7pv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur7pv"]
+_data = {
+&"RESET": SubResource("Animation_ur7pv"),
+&"spin death": SubResource("Animation_smehm")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 2
@@ -192,6 +230,11 @@ one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1, 8)
+
+[node name="death" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ur7pv")
+}
 
 [connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dashCD" to="." method="_on_dash_cd_timeout"]
