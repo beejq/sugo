@@ -18,6 +18,10 @@ extends CharacterBody2D
 @onready var death_anim: AnimationPlayer = $death
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var walk_sfx: AudioStreamPlayer2D = $walkSFX
+@onready var hurt_sfx: AudioStreamPlayer2D = $hurtSFX
+@onready var wall_jump_sfx: AudioStreamPlayer2D = $wallJumpSFX
+@onready var landing_sfx: AudioStreamPlayer2D = $landingSFX
 
 
 # --- Configurable stats ---
@@ -135,6 +139,8 @@ func _physics_process(delta: float) -> void:
 		
 		isWallJumping = false
 		if was_airborne:
+			landing_sfx.pitch_scale = randf_range(0.5, 2.0)
+			landing_sfx.play()
 			# Landed → reset jumps
 			jumpCounter = 0
 			spin.stop()
@@ -160,6 +166,7 @@ func _physics_process(delta: float) -> void:
 			# Only allow wall jump if not the world border
 			if collider.name != "world_border" and collider.name != "world_border2":
 				move_while_wall_jumping_cd.start()
+				play_wall_jump_sfx()
 				isWallJumping = true
 				velocity.y = JUMP_VELOCITY
 				spin.stop()
@@ -206,7 +213,12 @@ func _physics_process(delta: float) -> void:
 	# --- Animations ---
 	# Flip sprite if moving
 	if direction != 0:
+		if not walk_sfx.playing and is_on_floor():
+			walk_sfx.play()
 		animated_sprite_2d.flip_h = direction < 0
+	else:
+		if walk_sfx.playing:
+			walk_sfx.stop()
 
 	# Animation priority
 	if is_on_wall_only() and not is_on_floor() and not isWallJumping:
@@ -214,6 +226,7 @@ func _physics_process(delta: float) -> void:
 	elif not is_on_floor():
 		animated_sprite_2d.play("jump")
 	else:
+		
 		animated_sprite_2d.play("walk" if direction != 0 else "idle")
 
 	# -----------------------
@@ -274,6 +287,7 @@ func _on_move_while_wall_jumping_cd_timeout() -> void:
 func die():
 	if isDead:
 		return
+	hurt_sfx.play()
 	isDead = true
 	print("Player died!")
 	collision_shape_2d.disabled = true
@@ -302,6 +316,7 @@ func dash_logic(delta: float) -> void:
 			final_dash_dir.x = 0
 		final_dash_dir.y = input_dir.y
 		
+		dash_sfx.play()
 		is_dashing = true
 		can_dash = false
 		dash_timer2 = DASH_TIME
@@ -323,3 +338,7 @@ func update_dash_visuals() -> void:
 		modulate = Color("ffffff")
 	else:
 		modulate = Color("5d6060")
+		
+func play_wall_jump_sfx():
+	wall_jump_sfx.pitch_scale = randf_range(0.5, 2)
+	wall_jump_sfx.play()

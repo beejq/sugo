@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=72 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bbdbqaqrinxfw" path="res://assets/ui/Keyboard Extras.png" id="19_5newe"]
 [ext_resource type="Script" uid="uid://7g3enptj7lci" path="res://scripts/tutorial detection anim.gd" id="21_5newe"]
 [ext_resource type="Shader" uid="uid://cn08ldehthbdc" path="res://shaders/godray2.gdshader" id="27_qnb83"]
+[ext_resource type="AudioStream" uid="uid://bxf5awb5cn2s4" path="res://assets/Sounds/Kevin MacLeod - Itty Bitty 8 Bit  NO COPYRIGHT 8-bit Music.mp3" id="29_suyxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e1j6l"]
 shader = ExtResource("3_bt5mj")
@@ -2756,6 +2757,10 @@ offset_bottom = 32.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qnb83")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_suyxu")
+volume_db = -16.0
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]

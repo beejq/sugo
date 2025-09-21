@@ -1,8 +1,10 @@
 extends Node2D
 
 @onready var timer_panel: CanvasLayer = $Timer
+@onready var music: AudioStreamPlayer = $music
 
 func _ready() -> void:
+	music.play()
 	TimerManager.start_timer_after_delay()
 	Transition.fade_out()
 

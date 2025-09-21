@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cg6d852ke14wa"]
+[gd_scene load_steps=19 format=3 uid="uid://cg6d852ke14wa"]
 
 [ext_resource type="Script" uid="uid://csy73kygser83" path="res://scripts/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://dyu81vtoi1qqc" path="res://assets/color_background_1.png" id="2_bqqt6"]
 [ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="4_wu84c"]
+[ext_resource type="AudioStream" uid="uid://dt7ngsfmrqttu" path="res://assets/Sounds/Blip13.wav" id="6_rtw2f"]
+[ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="7_oa1go"]
+[ext_resource type="AudioStream" uid="uid://b231awxew5alk" path="res://assets/Sounds/Kevin MacLeod - Pixelland  NO COPYRIGHT 8-bit Music.mp3" id="8_tbmy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
 shader = ExtResource("1_bqqt6")
@@ -37,21 +40,6 @@ animations = [{
 "name": &"idle menu",
 "speed": 2.0
 }]
-
-[sub_resource type="Animation" id="Animation_8ln24"]
-resource_name = "title move in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("game title:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.287175, 2.82843),
-"update": 0,
-"values": [Vector2(1191, 38), Vector2(520, 38)]
-}
 
 [sub_resource type="Animation" id="Animation_rtw2f"]
 length = 0.001
@@ -143,6 +131,21 @@ tracks/2/keys = {
 "values": [Vector2(710, 12), Vector2(378, 12)]
 }
 
+[sub_resource type="Animation" id="Animation_8ln24"]
+resource_name = "title move in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game title:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.287175, 2.82843),
+"update": 0,
+"values": [Vector2(1191, 38), Vector2(520, 38)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oa1go"]
 _data = {
 &"RESET": SubResource("Animation_rtw2f"),
@@ -220,6 +223,7 @@ offset_right = 334.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
 theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
@@ -249,6 +253,7 @@ offset_right = 334.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
 theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
@@ -278,6 +283,7 @@ offset_right = 334.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 0.854902, 0.439216, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.537255)
 theme_override_colors/font_outline_color = Color(0.602418, 0.477729, 0, 1)
@@ -303,6 +309,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_oa1go")
 }
 
+[node name="selectingButtonSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rtw2f")
+
+[node name="clickSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oa1go")
+
+[node name="bgMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tbmy8")
+
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/start/start label" to="." method="_on_start_label_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/credits" to="." method="_on_credits_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/credits/credits label" to="." method="_on_credits_label_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/quit/quit label" to="." method="_on_quit_label_mouse_entered"]
