@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=75 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://7g3enptj7lci" path="res://scripts/tutorial detection anim.gd" id="21_5newe"]
 [ext_resource type="Shader" uid="uid://cn08ldehthbdc" path="res://shaders/godray2.gdshader" id="27_qnb83"]
 [ext_resource type="AudioStream" uid="uid://bxf5awb5cn2s4" path="res://assets/Sounds/Kevin MacLeod - Itty Bitty 8 Bit  NO COPYRIGHT 8-bit Music.mp3" id="29_suyxu"]
+[ext_resource type="PackedScene" uid="uid://cfcwuqr8nlcdh" path="res://scenes/checkpoint.tscn" id="30_sgl2t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e1j6l"]
 shader = ExtResource("3_bt5mj")
@@ -2087,11 +2088,17 @@ adjustment_enabled = true
 adjustment_contrast = 1.1
 adjustment_saturation = 1.2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgl2t"]
+size = Vector2(11, 361.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qouja"]
+size = Vector2(90.25, 129)
+
 [node name="Tutorial Level" type="Node2D"]
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-70, 83)
+position = Vector2(-76, 82)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -2761,6 +2768,17 @@ environment = SubResource("Environment_qnb83")
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_suyxu")
 volume_db = -16.0
+
+[node name="checkpoint" parent="." instance=ExtResource("30_sgl2t")]
+position = Vector2(-73, 97)
+
+[node name="checkpoint 1" type="CollisionShape2D" parent="checkpoint"]
+position = Vector2(669.5, -261.25)
+shape = SubResource("RectangleShape2D_sgl2t")
+
+[node name="checkpoint 2" type="CollisionShape2D" parent="checkpoint"]
+position = Vector2(1370.13, -384)
+shape = SubResource("RectangleShape2D_qouja")
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]

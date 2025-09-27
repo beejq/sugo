@@ -68,7 +68,7 @@ func _ready() -> void:
 	
 	if not Gamestate.intro_done:
 		canMove = false
-		await get_tree().create_timer(0.0).timeout #CHANGE LATER to 5 Seconds
+		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
 		canMove = true
 		Gamestate.intro_done = true
 	else:
@@ -289,10 +289,7 @@ func die():
 		return
 	hurt_sfx.play()
 	isDead = true
-	print("Player died!")
-	collision_shape_2d.disabled = true
-	set_deferred("collision_layer", 0)
-	set_deferred("collision_mask", 0)
+	collision_shape_2d.set_deferred("disabled", 1)
 	
 	death_anim.play("spin death")
 	
@@ -342,3 +339,9 @@ func update_dash_visuals() -> void:
 func play_wall_jump_sfx():
 	wall_jump_sfx.pitch_scale = randf_range(0.5, 2)
 	wall_jump_sfx.play()
+
+func respawn():
+	isDead = false
+	collision_shape_2d.set_deferred("disabled", 0)
+	
+	death_anim.stop()
