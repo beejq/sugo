@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cg6d852ke14wa"]
+[gd_scene load_steps=20 format=3 uid="uid://cg6d852ke14wa"]
 
 [ext_resource type="Script" uid="uid://csy73kygser83" path="res://scripts/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_bqqt6"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dt7ngsfmrqttu" path="res://assets/Sounds/Blip13.wav" id="6_rtw2f"]
 [ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="7_oa1go"]
 [ext_resource type="AudioStream" uid="uid://b231awxew5alk" path="res://assets/Sounds/Kevin MacLeod - Pixelland  NO COPYRIGHT 8-bit Music.mp3" id="8_tbmy8"]
+[ext_resource type="PackedScene" uid="uid://g4ixqdh3vfy1" path="res://scenes/credits.tscn" id="9_jk1qb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
 shader = ExtResource("1_bqqt6")
@@ -317,6 +318,10 @@ stream = ExtResource("7_oa1go")
 
 [node name="bgMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_tbmy8")
+
+[node name="Credits" parent="." instance=ExtResource("9_jk1qb")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer2/VBoxContainer/start/start label" to="." method="_on_start_label_mouse_entered"]
