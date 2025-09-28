@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cewinp3ouckc1"]
+
+[ext_resource type="Shader" uid="uid://bjiednvy40xh0" path="res://shaders/tree.gdshader" id="1_c8sm4"]
+[ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="1_xm5ni"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qk8qe"]
+shader = ExtResource("1_c8sm4")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 0.0
+
+[node name="tree sway" type="Sprite2D"]
+material = SubResource("ShaderMaterial_qk8qe")
+texture = ExtResource("1_xm5ni")
+region_enabled = true
+region_rect = Rect2(304, 48, 48, 96)

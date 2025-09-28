@@ -10,6 +10,8 @@ extends CanvasLayer
 @onready var grid_container: GridContainer = $Panel/GridContainer
 @onready var panel: Panel = $Panel
 @onready var label: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
+@onready var selecting_button_sfx: AudioStreamPlayer2D = $selectingButtonSFX
+@onready var click_sfx: AudioStreamPlayer2D = $clickSFX
 
 @onready var label1: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
 @onready var label2: Label = $Panel/GridContainer/ing2/MarginContainer/VBoxContainer/Label
@@ -39,6 +41,8 @@ func _process(delta: float) -> void:
 				print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
+				ScoreManager.level_score_container = TimerManager.time
+				get_tree().change_scene_to_file("res://scenes/result_screen.tscn")
 		else:
 			if Gamestate.print_once:
 				print("You Lose!")
@@ -48,28 +52,34 @@ func _on_button_1_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label1.text)
 		player_clicks += 1
+		click_sfx.play()
 
 func _on_button_2_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label2.text)
 		player_clicks += 1
+		click_sfx.play()
 
 func _on_button_3_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label3.text)
 		player_clicks += 1
+		click_sfx.play()
 
 func _on_button_4_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label4.text)
 		player_clicks += 1
+		click_sfx.play()
 
 func _on_button_5_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label5.text)
 		player_clicks += 1
+		click_sfx.play()
 
 func _on_button_6_pressed() -> void:
 	if player_clicks < 3:
 		player_answers.append(label6.text)
 		player_clicks += 1
+		click_sfx.play()

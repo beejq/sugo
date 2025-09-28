@@ -15,6 +15,13 @@ extends CharacterBody2D
 @onready var world_border_2: StaticBody2D = $"../world_border2"
 @onready var dust = preload("res://scenes/dust.tscn")
 @onready var dust_location: Marker2D = $Marker2D
+@onready var death_anim: AnimationPlayer = $death
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var camera_2d: Camera2D = $Camera2D
+@onready var walk_sfx: AudioStreamPlayer2D = $walkSFX
+@onready var hurt_sfx: AudioStreamPlayer2D = $hurtSFX
+@onready var wall_jump_sfx: AudioStreamPlayer2D = $wallJumpSFX
+@onready var landing_sfx: AudioStreamPlayer2D = $landingSFX
 
 
 # --- Configurable stats ---
@@ -33,6 +40,7 @@ var can_dash: bool = true
 var is_dashing: bool = false
 var dash_dir: Vector2 = Vector2.RIGHT
 var dash_timer2: float = 0.0
+var dash_cooldown: float = 1
 
 var dash_freeze_time := 0.05  # freeze before dash
 var dash_trail_interval := 0.03
@@ -46,6 +54,7 @@ var dashCooldown: bool = false
 var isWallJumping: bool = false
 var isGrounded: bool = true
 var canMove:bool = false
+var isDead: bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -66,6 +75,15 @@ func _ready() -> void:
 		canMove = true
 
 func _physics_process(delta: float) -> void:
+	
+	# If dead
+	if isDead:
+		velocity += get_gravity() * delta
+		move_and_slide()
+		return
+	
+	# Dash Cooldown
+	dash_cooldown = clampf(dash_cooldown - delta, 0.0, 1.0)
 	
 	#print(canMove)	
 	
@@ -121,6 +139,8 @@ func _physics_process(delta: float) -> void:
 		
 		isWallJumping = false
 		if was_airborne:
+			landing_sfx.pitch_scale = randf_range(0.5, 2.0)
+			landing_sfx.play()
 			# Landed → reset jumps
 			jumpCounter = 0
 			spin.stop()
@@ -146,6 +166,7 @@ func _physics_process(delta: float) -> void:
 			# Only allow wall jump if not the world border
 			if collider.name != "world_border" and collider.name != "world_border2":
 				move_while_wall_jumping_cd.start()
+				play_wall_jump_sfx()
 				isWallJumping = true
 				velocity.y = JUMP_VELOCITY
 				spin.stop()
@@ -192,7 +213,12 @@ func _physics_process(delta: float) -> void:
 	# --- Animations ---
 	# Flip sprite if moving
 	if direction != 0:
+		if not walk_sfx.playing and is_on_floor():
+			walk_sfx.play()
 		animated_sprite_2d.flip_h = direction < 0
+	else:
+		if walk_sfx.playing:
+			walk_sfx.stop()
 
 	# Animation priority
 	if is_on_wall_only() and not is_on_floor() and not isWallJumping:
@@ -200,6 +226,7 @@ func _physics_process(delta: float) -> void:
 	elif not is_on_floor():
 		animated_sprite_2d.play("jump")
 	else:
+		
 		animated_sprite_2d.play("walk" if direction != 0 else "idle")
 
 	# -----------------------
@@ -258,7 +285,17 @@ func _on_move_while_wall_jumping_cd_timeout() -> void:
 	#jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)
 
 func die():
-	pass
+	if isDead:
+		return
+	hurt_sfx.play()
+	isDead = true
+	collision_shape_2d.set_deferred("disabled", 1)
+	
+	death_anim.play("spin death")
+	
+	velocity = Vector2(50, -300)
+	camera_2d.shake(12.0,0.3)
+
 	
 func dash_logic(delta: float) -> void:
 	
@@ -270,15 +307,17 @@ func dash_logic(delta: float) -> void:
 	if input_dir.x != 0:
 		dash_dir.x = input_dir.x
 		
-	if can_dash and Input.is_action_just_pressed("dash"):
+	if can_dash and Input.is_action_just_pressed("dash") and dash_cooldown == 0:
 		var final_dash_dir: Vector2 = dash_dir
 		if input_dir.y != 0 and input_dir.x == 0:
 			final_dash_dir.x = 0
 		final_dash_dir.y = input_dir.y
 		
-		can_dash = false
+		dash_sfx.play()
 		is_dashing = true
+		can_dash = false
 		dash_timer2 = DASH_TIME
+		dash_cooldown = 1.0
 		
 		update_dash_visuals()
 		dash_dir = final_dash_dir.normalized()
@@ -296,3 +335,13 @@ func update_dash_visuals() -> void:
 		modulate = Color("ffffff")
 	else:
 		modulate = Color("5d6060")
+		
+func play_wall_jump_sfx():
+	wall_jump_sfx.pitch_scale = randf_range(0.5, 2)
+	wall_jump_sfx.play()
+
+func respawn():
+	isDead = false
+	collision_shape_2d.set_deferred("disabled", 0)
+	
+	death_anim.stop()
