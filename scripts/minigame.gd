@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 				print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
+				ScoreManager.level_score_container = TimerManager.time
+				get_tree().change_scene_to_file("res://scenes/result_screen.tscn")
 		else:
 			if Gamestate.print_once:
 				print("You Lose!")

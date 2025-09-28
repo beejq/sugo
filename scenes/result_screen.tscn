@@ -1,0 +1,185 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7kdxpol40xk8"]
+
+[ext_resource type="Script" uid="uid://fxgba546npti" path="res://scripts/result_screen.gd" id="1_im14c"]
+[ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_p64tj"]
+[ext_resource type="Texture2D" uid="uid://cmiaase836cne" path="res://assets/color_background_90.png" id="2_rdjqi"]
+[ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="3_rdjqi"]
+[ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="4_raeeo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raeeo"]
+shader = ExtResource("1_p64tj")
+shader_parameter/speed = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdjqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im14c"]
+atlas = ExtResource("4_raeeo")
+region = Rect2(0, 759, 30, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l46iw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im14c")
+}],
+"loop": true,
+"name": &"animation",
+"speed": 5.0
+}]
+
+[node name="result_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_im14c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_raeeo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rdjqi")
+stretch_mode = 1
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 64.0
+offset_right = 216.0
+offset_bottom = 159.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 80
+text = "RESULT"
+horizontal_alignment = 1
+
+[node name="sub text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -179.5
+offset_top = 162.0
+offset_right = 179.5
+offset_bottom = 214.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 48
+text = "Level Complete!"
+horizontal_alignment = 1
+
+[node name="timer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -54.0
+offset_right = 130.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rdjqi")
+
+[node name="minute" type="Label" parent="timer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -64.0
+offset_right = -53.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 128
+text = "00:"
+horizontal_alignment = 1
+
+[node name="seconds" type="Label" parent="timer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -64.0
+offset_right = 103.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 128
+text = "00."
+horizontal_alignment = 1
+
+[node name="miliseconds" type="Label" parent="timer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 124.0
+offset_top = -64.0
+offset_right = 292.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 128
+text = "00"
+horizontal_alignment = 1
+
+[node name="character" type="AnimatedSprite2D" parent="."]
+position = Vector2(566, 443.225)
+scale = Vector2(6.75, 6.75)
+sprite_frames = SubResource("SpriteFrames_l46iw")
+animation = &"animation"
+
+[node name="next level" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -116.5
+offset_top = -117.0
+offset_right = 116.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 48
+text = "Next Level"
