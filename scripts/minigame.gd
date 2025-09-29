@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	if player_clicks == 3:
 		if sorted_player == sorted_correct:
 			if Gamestate.print_once:
-				print("You Win!")
+				#print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
 				ScoreManager.level_score_container = TimerManager.time

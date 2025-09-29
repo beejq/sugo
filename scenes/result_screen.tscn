@@ -167,19 +167,24 @@ scale = Vector2(6.75, 6.75)
 sprite_frames = SubResource("SpriteFrames_l46iw")
 animation = &"animation"
 
-[node name="next level" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -116.5
-offset_top = -117.0
-offset_right = 116.5
-offset_bottom = -61.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 527.0
+offset_right = 785.0
+offset_bottom = 583.0
+theme_override_constants/separation = 16
+
+[node name="retry" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rdjqi")
+theme_override_font_sizes/font_size = 48
+text = "Retry"
+
+[node name="next level" type="Button" parent="HBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_rdjqi")
 theme_override_font_sizes/font_size = 48
 text = "Next Level"
+
+[connection signal="pressed" from="HBoxContainer/retry" to="." method="_on_retry_pressed"]
