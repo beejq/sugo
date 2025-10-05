@@ -1935,6 +1935,21 @@ size = Vector2(432, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ool0"]
 size = Vector2(8, 41)
 
+[sub_resource type="Animation" id="Animation_qouja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3983, -317)]
+}
+
 [sub_resource type="Animation" id="Animation_sgl2t"]
 resource_name = "move in"
 length = 2.0
@@ -1950,21 +1965,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(3983, -317), Vector2(4247, -317), Vector2(4199.08, -317), Vector2(4301, -317)]
-}
-
-[sub_resource type="Animation" id="Animation_qouja"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3983, -317)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qouja"]
@@ -2172,7 +2172,7 @@ size = Vector2(14.0625, 300.5)
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-79, 83)
+position = Vector2(4357, -336)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -2267,28 +2267,24 @@ offset = Vector2(72, 0)
 [node name="Kill Zones" type="Node" parent="."]
 
 [node name="killzone" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/killzone"]
 position = Vector2(5, 33)
 shape = SubResource("WorldBoundaryShape2D_vtaks")
 
 [node name="spikes" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/spikes"]
 position = Vector2(136, 156.5)
 shape = SubResource("RectangleShape2D_kvpfn")
 
 [node name="spikes2" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/spikes2"]
 position = Vector2(320, 107.5)
 shape = SubResource("RectangleShape2D_dinhu")
 
 [node name="spikes3" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/spikes3"]
 position = Vector2(520, 75.5)
@@ -2296,14 +2292,12 @@ shape = SubResource("RectangleShape2D_kvuet")
 
 [node name="spikes4" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
 position = Vector2(1317, -304)
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/spikes4"]
 position = Vector2(487, 72)
 shape = SubResource("RectangleShape2D_wljb1")
 
 [node name="makeuniquespikes" parent="Kill Zones" instance=ExtResource("9_0tnpc")]
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/makeuniquespikes"]
 position = Vector2(744, 75.5)
@@ -2398,7 +2392,7 @@ position = Vector2(1623, -380)
 position = Vector2(-190, 98)
 
 [node name="world_border2" parent="World Borders" instance=ExtResource("12_dinhu")]
-position = Vector2(4786, -128)
+position = Vector2(4478, -320)
 
 [node name="tindahan" parent="." instance=ExtResource("14_trtic")]
 position = Vector2(4432, -359)
@@ -2885,10 +2879,10 @@ offset_bottom = 167.0
 
 [node name="godray2" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_sww3w")
-offset_left = 964.0
-offset_top = -1308.0
-offset_right = 2480.0
-offset_bottom = 32.0
+offset_left = 2891.0
+offset_top = -1833.0
+offset_right = 5252.0
+offset_bottom = 254.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qnb83")
@@ -2914,6 +2908,10 @@ shape = SubResource("RectangleShape2D_gxtfn")
 
 [node name="checkpoint 4" type="CollisionShape2D" parent="checkpoint"]
 position = Vector2(2999, -409)
+shape = SubResource("RectangleShape2D_twgab")
+
+[node name="checkpoint 5" type="CollisionShape2D" parent="checkpoint"]
+position = Vector2(3916, -567)
 shape = SubResource("RectangleShape2D_twgab")
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
