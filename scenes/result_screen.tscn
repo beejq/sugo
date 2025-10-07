@@ -130,21 +130,6 @@ _data = {
 &"result_anim": SubResource("Animation_im14c")
 }
 
-[sub_resource type="Animation" id="Animation_wrniu"]
-resource_name = "subtext_anim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sub text:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(2.92817, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(0.75, 0.75), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_vrrhk"]
 resource_name = "RESET"
 tracks/0/type = "value"
@@ -160,25 +145,25 @@ tracks/0/keys = {
 "values": [Vector2(1e-05, 1e-05)]
 }
 
+[sub_resource type="Animation" id="Animation_wrniu"]
+resource_name = "subtext_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sub text:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(2.92817, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nj5ho"]
 _data = {
 &"RESET": SubResource("Animation_vrrhk"),
 &"subtext_anim": SubResource("Animation_wrniu")
-}
-
-[sub_resource type="Animation" id="Animation_nj5ho"]
-resource_name = "timer_anim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("timer:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.517632, 2.2974),
-"update": 0,
-"values": [Vector2(-518.555, 270), Vector2(446, 270)]
 }
 
 [sub_resource type="Animation" id="Animation_et5d2"]
@@ -196,37 +181,25 @@ tracks/0/keys = {
 "values": [Vector2(-1314, 259)]
 }
 
+[sub_resource type="Animation" id="Animation_nj5ho"]
+resource_name = "timer_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("timer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.517632, 2.2974),
+"update": 0,
+"values": [Vector2(-518.555, 270), Vector2(446, 270)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_et5d2"]
 _data = {
 &"RESET": SubResource("Animation_et5d2"),
 &"timer_anim": SubResource("Animation_nj5ho")
-}
-
-[sub_resource type="Animation" id="Animation_bsfim"]
-resource_name = "char_anim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("character:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.435275, 3.24901, 0.5),
-"update": 0,
-"values": [Vector2(562, 766), Vector2(562, 301), Vector2(562, 441.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("character:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 0.766667),
-"transitions": PackedFloat32Array(0.406126, 2.46229),
-"update": 0,
-"values": [0.0, 6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_46yes"]
@@ -254,6 +227,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bsfim"]
+resource_name = "char_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.435275, 3.24901, 0.5),
+"update": 0,
+"values": [Vector2(562, 766), Vector2(562, 301), Vector2(562, 441.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("character:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.766667),
+"transitions": PackedFloat32Array(0.406126, 2.46229),
+"update": 0,
+"values": [0.0, 6.28319]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46yes"]

@@ -2172,7 +2172,7 @@ size = Vector2(14.0625, 300.5)
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(4357, -336)
+position = Vector2(-81, 81)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)

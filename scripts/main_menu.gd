@@ -6,6 +6,7 @@ extends Control
 @onready var click_sfx: AudioStreamPlayer2D = $clickSFX
 @onready var bg_music: AudioStreamPlayer2D = $bgMusic
 @onready var credits: Control = $Credits
+@onready var transition: CanvasLayer = $transition
 
 func _ready() -> void:
 	bg_music.play()
@@ -21,7 +22,8 @@ func _on_start_pressed() -> void:
 	click_sfx.play()
 	await get_tree().create_timer(0.2).timeout
 	Gamestate.in_menu = false
-	get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+	await Transition.fade_in()
+	get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
 	
 func _on_credits_pressed() -> void:
 	click_sfx.play()
