@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=92 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -30,6 +30,8 @@
 [ext_resource type="Shader" uid="uid://cn08ldehthbdc" path="res://shaders/godray2.gdshader" id="27_qnb83"]
 [ext_resource type="AudioStream" uid="uid://bxf5awb5cn2s4" path="res://assets/Sounds/Kevin MacLeod - Itty Bitty 8 Bit  NO COPYRIGHT 8-bit Music.mp3" id="29_suyxu"]
 [ext_resource type="PackedScene" uid="uid://cfcwuqr8nlcdh" path="res://scenes/checkpoint.tscn" id="30_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://dcv3dap5a3x87" path="res://scenes/npc_interactable.tscn" id="31_qouja"]
+[ext_resource type="PackedScene" uid="uid://b2kevayb8r6xr" path="res://dialogues/balloon.tscn" id="32_wljb1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e1j6l"]
 shader = ExtResource("3_bt5mj")
@@ -2172,7 +2174,7 @@ size = Vector2(14.0625, 300.5)
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(-81, 81)
+position = Vector2(-76, 81)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -2913,6 +2915,11 @@ shape = SubResource("RectangleShape2D_twgab")
 [node name="checkpoint 5" type="CollisionShape2D" parent="checkpoint"]
 position = Vector2(3916, -567)
 shape = SubResource("RectangleShape2D_twgab")
+
+[node name="npc_interactable" parent="." instance=ExtResource("31_qouja")]
+position = Vector2(2675, -159)
+
+[node name="ExampleBalloon" parent="." instance=ExtResource("32_wljb1")]
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]

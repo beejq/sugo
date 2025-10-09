@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd63xpw60ye74"]
+[gd_scene load_steps=12 format=3 uid="uid://b2kevayb8r6xr"]
 
 [ext_resource type="Script" uid="uid://bmrwr75ydcyme" path="res://dialogues/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
@@ -76,6 +76,7 @@ region_rect = Rect2(3, 2, 42, 44)
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
+next_action = &"proceed"
 
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true

@@ -1,7 +1,7 @@
-[gd_scene load_steps=31 format=4 uid="uid://c05ygvmhhwvfb"]
+[gd_scene load_steps=34 format=4 uid="uid://c05ygvmhhwvfb"]
 
 [ext_resource type="Script" uid="uid://b8iesa2haa8qk" path="res://scripts/intro_cutscene.gd" id="1_juow0"]
-[ext_resource type="PackedScene" uid="uid://dd63xpw60ye74" path="res://dialogues/balloon.tscn" id="1_vuduy"]
+[ext_resource type="PackedScene" uid="uid://b2kevayb8r6xr" path="res://dialogues/balloon.tscn" id="1_vuduy"]
 [ext_resource type="Texture2D" uid="uid://cf7xx2dcky60x" path="res://assets/parallax/Clouds2/summer 1/1.png" id="3_dcu1r"]
 [ext_resource type="Texture2D" uid="uid://d48stx5k5mx7" path="res://assets/tiles.png" id="3_wifpd"]
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="4_dw6o5"]
@@ -621,6 +621,58 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_bprnf"]
+resource_name = "move_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, -31), Vector2(605, -31)]
+}
+
+[sub_resource type="Animation" id="Animation_pbanw"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, -31)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxsd4"]
+_data = {
+&"RESET": SubResource("Animation_pbanw"),
+&"move_out": SubResource("Animation_bprnf")
+}
+
+[sub_resource type="Animation" id="Animation_dcu1r"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cutscene_player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-256, -31)]
+}
+
 [sub_resource type="Animation" id="Animation_jusdg"]
 resource_name = "move_in"
 length = 2.0
@@ -636,32 +688,14 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-256, -31), Vector2(-20, -31)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("cutscene_player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 2, 2.0001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [&"idle", &"walk", &"walk", &"idle"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("cutscene_player:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.146412, 0.280108, 0.4, 0.533333, 0.732971, 0.866667, 1.0663, 1.2, 1.39964, 1.53333, 1.73297, 1.86667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_on3y1"]
+_data = {
+&"RESET": SubResource("Animation_dcu1r"),
+&"move_in": SubResource("Animation_jusdg")
 }
 
-[sub_resource type="Animation" id="Animation_dcu1r"]
+[sub_resource type="Animation" id="Animation_on3y1"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -686,24 +720,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"idle"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("cutscene_player:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_on3y1"]
-_data = {
-&"RESET": SubResource("Animation_dcu1r"),
-&"move_in": SubResource("Animation_jusdg")
 }
 
 [sub_resource type="Animation" id="Animation_xeku4"]
@@ -732,33 +748,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [&"idle", &"jump", &"idle", &"jump", &"idle", &"jump", &"idle"]
-}
-
-[sub_resource type="Animation" id="Animation_on3y1"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("cutscene_player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-256, -31)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("cutscene_player:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wo2cs"]
@@ -795,7 +784,14 @@ flip_h = true
 [node name="Camera2D" type="Camera2D" parent="cutscene_player"]
 position = Vector2(-1, -60)
 zoom = Vector2(3, 3)
+limit_right = 430
 position_smoothing_enabled = true
+
+[node name="MoveOut" type="AnimationPlayer" parent="."]
+root_node = NodePath("../cutscene_player")
+libraries = {
+&"": SubResource("AnimationLibrary_fxsd4")
+}
 
 [node name="Moving" type="AnimationPlayer" parent="."]
 libraries = {
