@@ -32,6 +32,8 @@ const COYOTE_TIME := 0.15
 const JUMP_BUFFER_TIME := 0.15
 const WALL_JUMP_PUSHBACK = 100
 var WALL_SLIDE_GRAVITY = 80
+var springJumpHeight = -800
+
 
 const DASH_AMT: float = 450.0
 const DASH_TIME: float = 0.16
@@ -55,6 +57,7 @@ var isWallJumping: bool = false
 var isGrounded: bool = true
 var canMove:bool = false
 var isDead: bool = false
+var isSpringing: bool = false
 
 var jumpAmount := 2
 var jumpCounter := 0
@@ -68,13 +71,18 @@ func _ready() -> void:
 	
 	if not Gamestate.intro_done:
 		canMove = false
-		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
+		await get_tree().create_timer(0.0).timeout #CHANGE LATER to 5 Seconds
 		canMove = true
 		Gamestate.intro_done = true
 	else:
 		canMove = true
 
 func _physics_process(delta: float) -> void:
+	
+	# If springing, override movement
+	if isSpringing:
+		move_and_slide()
+		return
 	
 	# If dead
 	if isDead:

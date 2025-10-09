@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://crd4ayur242em"]
+
+[ext_resource type="Texture2D" uid="uid://h8lxgo368dy4" path="res://assets/kennys.png" id="1_445u0"]
+[ext_resource type="Script" uid="uid://b0uolkeoposbj" path="res://scripts/speedboost.gd" id="1_uvwc2"]
+[ext_resource type="AudioStream" uid="uid://bu1g1ej0ady37" path="res://assets/Sounds/Jump3.wav" id="2_uvwc2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvwc2"]
+size = Vector2(14.5, 18.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudvb"]
+atlas = ExtResource("1_445u0")
+region = Rect2(133, 99, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l13eo"]
+atlas = ExtResource("1_445u0")
+region = Rect2(133, 99, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrxyh"]
+atlas = ExtResource("1_445u0")
+region = Rect2(152, 99, 19, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6w1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudvb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l13eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrxyh")
+}],
+"loop": false,
+"name": &"spring",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61klm"]
+size = Vector2(13.5, 18.5)
+
+[node name="Speedboost" type="Node2D"]
+script = ExtResource("1_uvwc2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.25, -2.75)
+shape = SubResource("RectangleShape2D_uvwc2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_uvwc2")
+volume_db = 3.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+position = Vector2(0, -2)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_f6w1c")
+animation = &"spring"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2.75, -2.75)
+shape = SubResource("RectangleShape2D_61klm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
