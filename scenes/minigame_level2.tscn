@@ -1,15 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://kxro2g6txgc"]
 
-[ext_resource type="Script" uid="uid://l1ekav6qp22a" path="res://scripts/minigame.gd" id="1_vpq6c"]
+[ext_resource type="Script" uid="uid://qfb6x78w1yaw" path="res://scripts/minigame_level_2.gd" id="1_kah84"]
 [ext_resource type="Texture2D" uid="uid://dhx2lbnvoijuf" path="res://assets/ui/cozy gui/Cozy GUI/Tileset/Cozy GUI - Tileset (By Pizza Doggy).png" id="2_ra78g"]
 [ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="4_irk1d"]
 [ext_resource type="Texture2D" uid="uid://bljkfqjltkjdp" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0013.png" id="5_57e5y"]
-[ext_resource type="Texture2D" uid="uid://dejoncgdrfsrq" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/boba_coffee.png" id="7_cfa77"]
-[ext_resource type="Texture2D" uid="uid://cqe425opxeate" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/soda_coke.png" id="8_3ucn2"]
-[ext_resource type="Texture2D" uid="uid://rkd0em4flb1l" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/canned_soup.png" id="9_1nu41"]
-[ext_resource type="Texture2D" uid="uid://dodvsq65awskg" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/cake_strawberry.png" id="10_5cxja"]
+[ext_resource type="Texture2D" uid="uid://djfgmmf7jb06y" path="res://assets/ui/99_ingredients/ingredients_png/spices_png/vanilla.png" id="5_kah84"]
+[ext_resource type="Texture2D" uid="uid://cefbgdi2i2h4x" path="res://assets/ui/99_ingredients/ingredients_png/spices_png/pepper.png" id="6_k6kga"]
+[ext_resource type="Texture2D" uid="uid://4dpo21tmlxtp" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/cheese_gouda.png" id="7_vpq6c"]
+[ext_resource type="Texture2D" uid="uid://bfmhcj7a22v1s" path="res://assets/ui/99_ingredients/ingredients_png/grains_png/rice.png" id="8_ra78g"]
+[ext_resource type="Texture2D" uid="uid://dd1lyxrfqijtv" path="res://assets/ui/msg.png" id="10_s8y1c"]
 [ext_resource type="Texture2D" uid="uid://o2sa4pg5aocp" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/eggs_white.png" id="11_6thkl"]
-[ext_resource type="Texture2D" uid="uid://br4wfb4fqfu3a" path="res://assets/ui/foods/Free_pixel_food_16x16/Icons/fruit_apple.png" id="12_s8syf"]
 [ext_resource type="AudioStream" uid="uid://dt7ngsfmrqttu" path="res://assets/Sounds/Blip13.wav" id="13_hgjlj"]
 [ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="14_heaw1"]
 
@@ -41,7 +41,7 @@ shadow_size = 36
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_802es"]
 
 [node name="StoreMinigame" type="CanvasLayer"]
-script = ExtResource("1_vpq6c")
+script = ExtResource("1_kah84")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -121,7 +121,7 @@ size_flags_horizontal = 0
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("7_cfa77")
+texture = ExtResource("5_kah84")
 expand_mode = 1
 stretch_mode = 5
 
@@ -132,7 +132,7 @@ theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_irk1d")
 theme_override_font_sizes/font_size = 20
-text = "Coffee"
+text = "Vanilla"
 horizontal_alignment = 1
 uppercase = true
 
@@ -169,7 +169,7 @@ size_flags_horizontal = 0
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("8_3ucn2")
+texture = ExtResource("6_k6kga")
 expand_mode = 1
 stretch_mode = 5
 
@@ -180,7 +180,7 @@ theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_irk1d")
 theme_override_font_sizes/font_size = 20
-text = "Coke"
+text = "Pepper"
 horizontal_alignment = 1
 uppercase = true
 
@@ -217,7 +217,7 @@ size_flags_horizontal = 0
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("9_1nu41")
+texture = ExtResource("7_vpq6c")
 expand_mode = 1
 stretch_mode = 5
 
@@ -228,7 +228,7 @@ theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_irk1d")
 theme_override_font_sizes/font_size = 20
-text = "SOUP"
+text = "Cheese"
 horizontal_alignment = 1
 uppercase = true
 
@@ -265,7 +265,7 @@ size_flags_horizontal = 0
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("10_5cxja")
+texture = ExtResource("8_ra78g")
 expand_mode = 1
 stretch_mode = 5
 
@@ -276,7 +276,7 @@ theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_irk1d")
 theme_override_font_sizes/font_size = 20
-text = "Cake"
+text = "Rice"
 horizontal_alignment = 1
 uppercase = true
 
@@ -361,7 +361,7 @@ size_flags_horizontal = 0
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("12_s8syf")
+texture = ExtResource("10_s8y1c")
 expand_mode = 1
 stretch_mode = 5
 
@@ -372,7 +372,7 @@ theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_irk1d")
 theme_override_font_sizes/font_size = 20
-text = "Apple"
+text = "Aji"
 horizontal_alignment = 1
 uppercase = true
 

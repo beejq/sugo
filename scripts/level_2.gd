@@ -14,4 +14,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	#if (Gamestate.level_finished):
-		#Gamestate.level1_fin = true
+		#Gamestate.level2_fin = true

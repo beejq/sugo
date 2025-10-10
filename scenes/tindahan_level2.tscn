@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5l8xwxfbhoyu" path="res://scripts/tindahan.gd" id="1_tuvxl"]
 [ext_resource type="Texture2D" uid="uid://dwopxrt6psgpk" path="res://assets/tindahan.png" id="2_rffly"]
-[ext_resource type="PackedScene" uid="uid://ckx6xxrlrj4t4" path="res://scenes/minigame.tscn" id="3_xvrsq"]
+[ext_resource type="PackedScene" uid="uid://kxro2g6txgc" path="res://scenes/minigame_level2.tscn" id="3_tuvxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1gq5j"]
 size = Vector2(107, 83)
@@ -24,6 +24,6 @@ collision_mask = 2
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_1gq5j")
 
-[node name="StoreMinigame" parent="." instance=ExtResource("3_xvrsq")]
+[node name="StoreMinigame" parent="." instance=ExtResource("3_tuvxl")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

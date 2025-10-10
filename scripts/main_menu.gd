@@ -12,6 +12,8 @@ func _ready() -> void:
 	bg_music.play()
 	text_anim.play("title move in")
 	text_anim.queue("menu selection in")
+	Gamestate.level1_fin = false
+	Gamestate.level2_fin = false
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc") and credits.visible:

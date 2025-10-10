@@ -22,7 +22,7 @@ extends CanvasLayer
 
 var player_clicks: int = 0
 
-var correct_answers = Gamestate.tutorial_ingredients
+var correct_answers = Gamestate.level2_ingredients
 var player_answers = []
 
 func _ready() -> void:
@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 				#print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
-				Gamestate.level1_fin = true
+				Gamestate.level2_fin = true
 				ScoreManager.level_score_container = TimerManager.time
 				get_tree().change_scene_to_file("res://scenes/result_screen.tscn")
 		else:

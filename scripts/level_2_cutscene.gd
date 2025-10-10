@@ -44,5 +44,4 @@ func _on_animation_finished(anim_name: String) -> void:
 		if extShown:
 			inDialogue = false
 			Transition.fade_in()
-			print("Switch to Level 2")
-			#get_tree().change_scene_to_file("res://scenes/game.tscn")
+			get_tree().change_scene_to_file("res://scenes/level_2.tscn")

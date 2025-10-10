@@ -71,7 +71,7 @@ func _ready() -> void:
 	
 	if not Gamestate.intro_done:
 		canMove = false
-		await get_tree().create_timer(0.0).timeout #CHANGE LATER to 5 Seconds
+		await get_tree().create_timer(5.0).timeout #CHANGE LATER to 5 Seconds
 		canMove = true
 		Gamestate.intro_done = true
 	else:

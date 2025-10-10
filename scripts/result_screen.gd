@@ -33,7 +33,13 @@ func _on_retry_pressed() -> void:
 	Gamestate.print_once = true
 	TimerManager.reset()
 	TimerManager.freeze = true
-	get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+	
+	if Gamestate.level1_fin and not Gamestate.level2_fin:
+		Gamestate.level1_fin = false
+		get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+	elif Gamestate.level2_fin and Gamestate.level1_fin:
+		Gamestate.level2_fin = false
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
 
 func _on_next_level_pressed() -> void:
 	Gamestate.intro_done = false
@@ -43,4 +49,8 @@ func _on_next_level_pressed() -> void:
 	Gamestate.print_once = true
 	TimerManager.reset()
 	TimerManager.freeze = true
-	get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")
+	
+	if Gamestate.level1_fin and not Gamestate.level2_fin:
+		get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")
+	elif Gamestate.level2_fin and Gamestate.level1_fin:
+		print("CONGRATS ON FINISHING THE 2 LEVELS!")
