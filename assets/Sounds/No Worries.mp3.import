@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dvrrpfquawwqx"
+path="res://.godot/imported/No Worries.mp3-45317407054caa1e9909be49425256f5.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/No Worries.mp3"
+dest_files=["res://.godot/imported/No Worries.mp3-45317407054caa1e9909be49425256f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

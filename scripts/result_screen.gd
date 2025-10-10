@@ -34,3 +34,13 @@ func _on_retry_pressed() -> void:
 	TimerManager.reset()
 	TimerManager.freeze = true
 	get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+
+func _on_next_level_pressed() -> void:
+	Gamestate.intro_done = false
+	Gamestate.ingredients_shown = false
+	Gamestate.level_finished = false
+	Gamestate.minigame_started = false
+	Gamestate.print_once = true
+	TimerManager.reset()
+	TimerManager.freeze = true
+	get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")

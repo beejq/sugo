@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b58um6f5pe3bw"]
+
+[ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="1_4bgn4"]
+[ext_resource type="Script" uid="uid://c1uoiw76dg5p" path="res://scripts/checkpoint_ui.gd" id="1_jf3bl"]
+
+[node name="checkpoint_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jf3bl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_right = 104.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_4bgn4")
+theme_override_font_sizes/font_size = 10
+text = "CHECKPOINT REACHED!"
+horizontal_alignment = 1

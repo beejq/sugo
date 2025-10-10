@@ -87,7 +87,7 @@ proceed={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_2.dialogue", "res://dialogues/npc1_dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/intro_dialogue.dialogue", "res://dialogues/intro_2.dialogue", "res://dialogues/npc1_dialogue.dialogue", "res://dialogues/level2_cutscene_dialogue.dialogue", "res://dialogues/level2_cutscene_dialogue_ext.dialogue")
 
 [layer_names]
 

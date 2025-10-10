@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://7myxyjsv6dqv"]
 
-[ext_resource type="Script" path="res://scripts/spring.gd" id="1_6vrsj"]
+[ext_resource type="Script" uid="uid://8yueugmqmd8s" path="res://scripts/spring.gd" id="1_6vrsj"]
 [ext_resource type="Texture2D" uid="uid://h8lxgo368dy4" path="res://assets/kennys.png" id="2_f6w1c"]
 [ext_resource type="AudioStream" uid="uid://bu1g1ej0ady37" path="res://assets/Sounds/Jump3.wav" id="3_f6w1c"]
 
@@ -32,6 +32,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yrxyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l13eo")
 }],
 "loop": false,
 "name": &"spring",
@@ -47,7 +50,7 @@ script = ExtResource("1_6vrsj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_f6w1c")
-animation = &"idle"
+animation = &"spring"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

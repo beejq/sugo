@@ -470,3 +470,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="HBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="HBoxContainer/next level" to="." method="_on_next_level_pressed"]
