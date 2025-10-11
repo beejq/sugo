@@ -10,8 +10,8 @@ extends CanvasLayer
 @onready var grid_container: GridContainer = $Panel/GridContainer
 @onready var panel: Panel = $Panel
 @onready var label: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
-@onready var selecting_button_sfx: AudioStreamPlayer2D = $selectingButtonSFX
-@onready var click_sfx: AudioStreamPlayer2D = $clickSFX
+@onready var selecting_button_sfx: AudioStreamPlayer = $selectingButtonSFX
+@onready var click_sfx: AudioStreamPlayer = $clickSFX
 
 @onready var label1: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
 @onready var label2: Label = $Panel/GridContainer/ing2/MarginContainer/VBoxContainer/Label

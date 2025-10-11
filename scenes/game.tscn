@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=107 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://crd4ayur242em" path="res://scenes/speedboost.tscn" id="33_js0lu"]
 [ext_resource type="PackedScene" uid="uid://7myxyjsv6dqv" path="res://scenes/spring.tscn" id="33_v2yb1"]
 [ext_resource type="PackedScene" uid="uid://b58um6f5pe3bw" path="res://scenes/checkpoint_ui.tscn" id="35_gxtfn"]
+[ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="36_twgab"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twgab"]
 texture = ExtResource("3_lbhrr")
@@ -2781,6 +2782,9 @@ size = Vector2(8, 208)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trtic"]
 size = Vector2(208, 9)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaba0"]
+size = Vector2(8, 185)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir15t"]
 size = Vector2(64, 8)
 
@@ -3115,7 +3119,7 @@ _data = {
 script = ExtResource("1_vtaks")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(4362, -334)
+position = Vector2(-79, 82)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -3253,6 +3257,10 @@ shape = SubResource("RectangleShape2D_wljb1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/makeuniquespikes"]
 position = Vector2(744, 75.5)
 shape = SubResource("RectangleShape2D_trtic")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Kill Zones/makeuniquespikes"]
+position = Vector2(1364, -414.5)
+shape = SubResource("RectangleShape2D_oaba0")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Kill Zones/makeuniquespikes"]
 position = Vector2(992, 60)
@@ -3987,6 +3995,15 @@ shape = SubResource("RectangleShape2D_0sl42")
 libraries = {
 &"": SubResource("AnimationLibrary_nepv3")
 }
+
+[node name="Label" type="Label" parent="."]
+offset_left = 920.0
+offset_top = -575.0
+offset_right = 1174.0
+offset_bottom = -543.0
+theme_override_fonts/font = ExtResource("36_twgab")
+theme_override_font_sizes/font_size = 32
+text = "Ginagawa mo dito?"
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]

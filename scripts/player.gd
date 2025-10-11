@@ -111,15 +111,11 @@ func _physics_process(delta: float) -> void:
 		
 	isGrounded = is_on_floor()
 	
-	# -----------------------
 	# Update timers
-	# -----------------------
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
 
-	# -----------------------
 	# Handle jump input
-	# -----------------------
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
 
@@ -136,9 +132,7 @@ func _physics_process(delta: float) -> void:
 		jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)
 		jump_buffer_timer = 0.0
 
-	# -----------------------
 	# Grounded / Airborne
-	# -----------------------
 	if is_on_floor() or !coyote_timer.is_stopped():
 		
 		if !is_dashing and !can_dash:
@@ -164,9 +158,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		was_airborne = true
 	
-	# -----------------------
 	# Wall Jump and Wall Slide
-	# -----------------------
 	if is_on_wall_only() and Input.is_action_just_pressed("jump"):
 		var collision := get_slide_collision(0)
 		if collision:
@@ -190,15 +182,11 @@ func _physics_process(delta: float) -> void:
 			if collider.name != "world_border":
 				velocity.y = min(velocity.y, WALL_SLIDE_GRAVITY)
 
-	# -----------------------
 	# Variable jump height
-	# -----------------------
 	if velocity.y < 0 and not Input.is_action_pressed("jump"):
 		velocity.y += get_gravity().y * delta * 2.5  # Cut short if button released
 
-	# -----------------------
 	# Horizontal movement
-	# -----------------------
 	var direction := Input.get_axis("left", "right")
 
 	## Flip + cancel sprint if sharp turn
@@ -237,9 +225,7 @@ func _physics_process(delta: float) -> void:
 		
 		animated_sprite_2d.play("walk" if direction != 0 else "idle")
 
-	# -----------------------
 	# Dash logic
-	# -----------------------
 	#if Input.is_action_just_pressed("dash") and not dashCooldown:
 		#dashDirection = -1 if animated_sprite_2d.flip_h else 1
 		#doDash = true
@@ -259,9 +245,7 @@ func _physics_process(delta: float) -> void:
 
 	dash_logic(delta)
 
-	# -----------------------
 	# Apply movement
-	# -----------------------
 	var was_on_floor = is_on_floor()
 	move_and_slide()
 	if was_on_floor and not is_on_floor():
@@ -272,9 +256,7 @@ func _physics_process(delta: float) -> void:
 	animated_sprite_2d.scale.y = move_toward(animated_sprite_2d.scale.y, 1, 1 * delta)
 
 
-# -----------------------
 # Signals
-# -----------------------
 func _on_dash_timer_timeout() -> void:
 	doDash = false
 	dash_effect_timer.stop()
@@ -285,9 +267,7 @@ func _on_dash_cd_timeout() -> void:
 func _on_move_while_wall_jumping_cd_timeout() -> void:
 	isWallJumping = false
 
-# -----------------------
 # Helpers
-# -----------------------
 #func double_jump():
 	#velocity.y = JUMP_VELOCITY
 	#jumpCounter = clamp(jumpCounter + 1, 0, jumpAmount)

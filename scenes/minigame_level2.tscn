@@ -382,12 +382,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
 
-[node name="selectingButtonSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="selectingButtonSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_hgjlj")
 
-[node name="clickSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="clickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_heaw1")
-volume_db = 12.0
 
 [connection signal="pressed" from="Panel/GridContainer/ing1/button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Panel/GridContainer/ing2/button2" to="." method="_on_button_2_pressed"]

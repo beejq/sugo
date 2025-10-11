@@ -8,7 +8,7 @@ extends Control
 @onready var subtext_anim: AnimationPlayer = $subtext_anim
 @onready var timer_anim: AnimationPlayer = $timer_anim
 @onready var char_anim: AnimationPlayer = $char_anim
-
+@onready var click_sfx: AudioStreamPlayer = $click_sfx
 
 func _ready() -> void:
 	result_anim.play("result_anim")
@@ -33,6 +33,7 @@ func _on_retry_pressed() -> void:
 	Gamestate.print_once = true
 	TimerManager.reset()
 	TimerManager.freeze = true
+	click_sfx.play()
 	
 	if Gamestate.level1_fin and not Gamestate.level2_fin:
 		Gamestate.level1_fin = false
@@ -49,6 +50,7 @@ func _on_next_level_pressed() -> void:
 	Gamestate.print_once = true
 	TimerManager.reset()
 	TimerManager.freeze = true
+	click_sfx.play()
 	
 	if Gamestate.level1_fin and not Gamestate.level2_fin:
 		get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")

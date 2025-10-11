@@ -1,10 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://b7kdxpol40xk8"]
+[gd_scene load_steps=28 format=3 uid="uid://b7kdxpol40xk8"]
 
 [ext_resource type="Script" uid="uid://fxgba546npti" path="res://scripts/result_screen.gd" id="1_im14c"]
 [ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_p64tj"]
 [ext_resource type="Texture2D" uid="uid://cmiaase836cne" path="res://assets/color_background_90.png" id="2_rdjqi"]
 [ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="3_rdjqi"]
 [ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="4_raeeo"]
+[ext_resource type="AudioStream" uid="uid://cgkmnlfos3yy8" path="res://assets/Sounds/8-bit RPG Music  Victory Theme.mp3" id="6_l46iw"]
+[ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="7_wrniu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_raeeo"]
 shader = ExtResource("1_p64tj")
@@ -468,6 +470,15 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_46yes")
 }
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l46iw")
+volume_db = -24.0
+autoplay = true
+
+[node name="click_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wrniu")
+volume_db = -4.0
 
 [connection signal="pressed" from="HBoxContainer/retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="HBoxContainer/next level" to="." method="_on_next_level_pressed"]
