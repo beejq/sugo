@@ -38,7 +38,6 @@ func _process(delta: float) -> void:
 	if player_clicks == 3:
 		if sorted_player == sorted_correct:
 			if Gamestate.print_once:
-				#print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
 				Gamestate.level1_fin = true
@@ -46,8 +45,16 @@ func _process(delta: float) -> void:
 				get_tree().change_scene_to_file("res://scenes/result_screen.tscn")
 		else:
 			if Gamestate.print_once:
-				print("You Lose!")
-				Gamestate.print_once = false
+				get_tree().change_scene_to_file("res://scenes/game.tscn")
+				TimerManager.reset()
+				TimerManager.freeze = true
+				Gamestate.ingredients_shown = false
+				Gamestate.minigame_started = false
+				Gamestate.level1_fin = false
+				Gamestate.level_finished = false
+				Gamestate.intro_done = false
+				Transition.fade_out()
+				
 
 func _on_button_1_pressed() -> void:
 	if player_clicks < 3:

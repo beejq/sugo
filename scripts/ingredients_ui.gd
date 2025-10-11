@@ -26,10 +26,9 @@ var ingredient_images = {
 var level1_ingredients = Gamestate.tutorial_ingredients
 var level2_ingredients = Gamestate.level2_ingredients
 func _ready() -> void:
-	if not Gamestate.ingredients_shown:
+	if not Gamestate.ingredients_shown and not Gamestate.in_menu:
 		Gamestate.ingredients_shown = true
-		
-		#pause()
+		Gamestate.showing_ingredients = true
 		
 		show_ingredient()
 		
@@ -39,11 +38,9 @@ func _ready() -> void:
 		tween.tween_property(panel, "modulate:a", 0.0, 0.5)
 		tween.parallel().tween_property(panel, "position:y", panel.position.y - 1000, 2.0)
 		await tween.finished
-		
-		#unpause()
+		Gamestate.showing_ingredients = false
 		
 		panel.visible = false
-		
 		
 	else:
 		panel.visible = false

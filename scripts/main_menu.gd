@@ -25,7 +25,8 @@ func _on_start_pressed() -> void:
 	await get_tree().create_timer(0.2).timeout
 	Gamestate.in_menu = false
 	await Transition.fade_in()
-	get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
+	if is_instance_valid(self) and get_tree() != null:
+		get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
 	
 func _on_credits_pressed() -> void:
 	click_sfx.play()

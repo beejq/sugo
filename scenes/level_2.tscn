@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://e0xrsgqi42eu"]
+[gd_scene load_steps=18 format=4 uid="uid://e0xrsgqi42eu"]
 
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="1_jm1iu"]
 [ext_resource type="Script" uid="uid://dk8ywk0njiqnu" path="res://scripts/level_2.gd" id="1_ne2mo"]
@@ -10,6 +10,8 @@
 [ext_resource type="FontFile" uid="uid://bach2670knbhg" path="res://assets/font/quaver.ttf" id="7_ne2mo"]
 [ext_resource type="AudioStream" uid="uid://bxf5awb5cn2s4" path="res://assets/Sounds/Kevin MacLeod - Itty Bitty 8 Bit  NO COPYRIGHT 8-bit Music.mp3" id="9_6cvei"]
 [ext_resource type="PackedScene" uid="uid://d1ufbvlqqnucq" path="res://scenes/ingredients_ui.tscn" id="10_que50"]
+[ext_resource type="PackedScene" uid="uid://c6o3q6mudhaoy" path="res://scenes/killzone.tscn" id="11_172wr"]
+[ext_resource type="PackedScene" uid="uid://cfcwuqr8nlcdh" path="res://scenes/checkpoint.tscn" id="13_g2hoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqxsl"]
 texture = ExtResource("1_jm1iu")
@@ -538,6 +540,9 @@ sources/1 = SubResource("TileSetAtlasSource_b4j7a")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cvei"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fldb1"]
+size = Vector2(35, 20)
+
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_ne2mo")
 
@@ -611,3 +616,25 @@ stream = ExtResource("9_6cvei")
 volume_db = -16.0
 
 [node name="IngredientsUI" parent="." instance=ExtResource("10_que50")]
+
+[node name="Kill Zones" type="Node" parent="."]
+
+[node name="makeuniquespikes" parent="Kill Zones" instance=ExtResource("11_172wr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zones/makeuniquespikes"]
+position = Vector2(-55.5, -9)
+shape = SubResource("RectangleShape2D_fldb1")
+
+[node name="killzone" parent="Kill Zones" instance=ExtResource("11_172wr")]
+
+[node name="spikes" parent="Kill Zones" instance=ExtResource("11_172wr")]
+
+[node name="spikes2" parent="Kill Zones" instance=ExtResource("11_172wr")]
+
+[node name="spikes3" parent="Kill Zones" instance=ExtResource("11_172wr")]
+
+[node name="spikes4" parent="Kill Zones" instance=ExtResource("11_172wr")]
+position = Vector2(1317, -304)
+
+[node name="checkpoint" parent="." instance=ExtResource("13_g2hoc")]
+position = Vector2(-102, 0)
