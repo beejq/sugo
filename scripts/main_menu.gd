@@ -6,11 +6,14 @@ extends Control
 @onready var click_sfx: AudioStreamPlayer2D = $clickSFX
 @onready var bg_music: AudioStreamPlayer2D = $bgMusic
 @onready var credits: Control = $Credits
+@onready var transition: CanvasLayer = $transition
 
 func _ready() -> void:
 	bg_music.play()
 	text_anim.play("title move in")
 	text_anim.queue("menu selection in")
+	Gamestate.level1_fin = false
+	Gamestate.level2_fin = false
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc") and credits.visible:
@@ -21,7 +24,9 @@ func _on_start_pressed() -> void:
 	click_sfx.play()
 	await get_tree().create_timer(0.2).timeout
 	Gamestate.in_menu = false
-	get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+	await Transition.fade_in()
+	if is_instance_valid(self) and get_tree() != null:
+		get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
 	
 func _on_credits_pressed() -> void:
 	click_sfx.play()

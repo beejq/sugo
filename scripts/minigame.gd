@@ -10,8 +10,8 @@ extends CanvasLayer
 @onready var grid_container: GridContainer = $Panel/GridContainer
 @onready var panel: Panel = $Panel
 @onready var label: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
-@onready var selecting_button_sfx: AudioStreamPlayer2D = $selectingButtonSFX
-@onready var click_sfx: AudioStreamPlayer2D = $clickSFX
+@onready var selecting_button_sfx: AudioStreamPlayer = $selectingButtonSFX
+@onready var click_sfx: AudioStreamPlayer = $clickSFX
 
 @onready var label1: Label = $Panel/GridContainer/ing1/MarginContainer/VBoxContainer/Label
 @onready var label2: Label = $Panel/GridContainer/ing2/MarginContainer/VBoxContainer/Label
@@ -38,15 +38,23 @@ func _process(delta: float) -> void:
 	if player_clicks == 3:
 		if sorted_player == sorted_correct:
 			if Gamestate.print_once:
-				#print("You Win!")
 				Gamestate.print_once = false
 				Gamestate.level_finished = true
+				Gamestate.level1_fin = true
 				ScoreManager.level_score_container = TimerManager.time
 				get_tree().change_scene_to_file("res://scenes/result_screen.tscn")
 		else:
 			if Gamestate.print_once:
-				print("You Lose!")
-				Gamestate.print_once = false
+				get_tree().change_scene_to_file("res://scenes/game.tscn")
+				TimerManager.reset()
+				TimerManager.freeze = true
+				Gamestate.ingredients_shown = false
+				Gamestate.minigame_started = false
+				Gamestate.level1_fin = false
+				Gamestate.level_finished = false
+				Gamestate.intro_done = false
+				Transition.fade_out()
+				
 
 func _on_button_1_pressed() -> void:
 	if player_clicks < 3:

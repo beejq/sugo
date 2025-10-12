@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://7myxyjsv6dqv"]
+
+[ext_resource type="Script" uid="uid://8yueugmqmd8s" path="res://scripts/spring.gd" id="1_6vrsj"]
+[ext_resource type="Texture2D" uid="uid://h8lxgo368dy4" path="res://assets/kennys.png" id="2_f6w1c"]
+[ext_resource type="AudioStream" uid="uid://bu1g1ej0ady37" path="res://assets/Sounds/Jump3.wav" id="3_f6w1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudvb"]
+atlas = ExtResource("2_f6w1c")
+region = Rect2(133, 99, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l13eo"]
+atlas = ExtResource("2_f6w1c")
+region = Rect2(133, 99, 19, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrxyh"]
+atlas = ExtResource("2_f6w1c")
+region = Rect2(152, 99, 19, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6w1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudvb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l13eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrxyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l13eo")
+}],
+"loop": false,
+"name": &"spring",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61klm"]
+size = Vector2(13.5, 18.5)
+
+[node name="Jump Spring" type="Node2D"]
+script = ExtResource("1_6vrsj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_f6w1c")
+animation = &"spring"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_61klm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f6w1c")
+volume_db = 3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7kdxpol40xk8"]
+[gd_scene load_steps=28 format=3 uid="uid://b7kdxpol40xk8"]
 
 [ext_resource type="Script" uid="uid://fxgba546npti" path="res://scripts/result_screen.gd" id="1_im14c"]
 [ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_p64tj"]
 [ext_resource type="Texture2D" uid="uid://cmiaase836cne" path="res://assets/color_background_90.png" id="2_rdjqi"]
 [ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="3_rdjqi"]
 [ext_resource type="Texture2D" uid="uid://d2cau8wj4usn0" path="res://assets/Larry_No_Background.png" id="4_raeeo"]
+[ext_resource type="AudioStream" uid="uid://cgkmnlfos3yy8" path="res://assets/Sounds/8-bit RPG Music  Victory Theme.mp3" id="6_l46iw"]
+[ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="7_wrniu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_raeeo"]
 shader = ExtResource("1_p64tj")
@@ -27,6 +29,241 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im14c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im14c"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrniu"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 0, 0, 0.858824)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l46iw"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_l46iw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(360, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sub text:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_im14c"]
+resource_name = "result_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.210224, 2.82843),
+"update": 0,
+"values": [Vector2(360, -116), Vector2(360, 69)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wrniu"]
+_data = {
+&"RESET": SubResource("Animation_l46iw"),
+&"result_anim": SubResource("Animation_im14c")
+}
+
+[sub_resource type="Animation" id="Animation_vrrhk"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sub text:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_wrniu"]
+resource_name = "subtext_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sub text:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(2.92817, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nj5ho"]
+_data = {
+&"RESET": SubResource("Animation_vrrhk"),
+&"subtext_anim": SubResource("Animation_wrniu")
+}
+
+[sub_resource type="Animation" id="Animation_et5d2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("timer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1314, 259)]
+}
+
+[sub_resource type="Animation" id="Animation_nj5ho"]
+resource_name = "timer_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("timer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.517632, 2.2974),
+"update": 0,
+"values": [Vector2(-518.555, 270), Vector2(446, 270)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_et5d2"]
+_data = {
+&"RESET": SubResource("Animation_et5d2"),
+&"timer_anim": SubResource("Animation_nj5ho")
+}
+
+[sub_resource type="Animation" id="Animation_46yes"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(566, 760)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bsfim"]
+resource_name = "char_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.435275, 3.24901, 0.5),
+"update": 0,
+"values": [Vector2(562, 766), Vector2(562, 301), Vector2(562, 441.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("character:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.766667),
+"transitions": PackedFloat32Array(0.406126, 2.46229),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46yes"]
+_data = {
+&"RESET": SubResource("Animation_46yes"),
+&"char_anim": SubResource("Animation_bsfim")
+}
+
 [node name="result_screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -35,6 +272,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_im14c")
+metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_raeeo")
@@ -55,8 +293,9 @@ anchor_right = 0.5
 offset_left = -216.0
 offset_top = 64.0
 offset_right = 216.0
-offset_bottom = 159.0
+offset_bottom = 164.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
 theme_override_constants/shadow_offset_x = 12
 theme_override_constants/shadow_offset_y = 12
@@ -65,22 +304,30 @@ theme_override_font_sizes/font_size = 80
 text = "RESULT"
 horizontal_alignment = 1
 
-[node name="sub text" type="Label" parent="."]
+[node name="sub text" type="RichTextLabel" parent="."]
+clip_contents = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.29
 anchor_right = 0.5
+anchor_bottom = 0.29
 offset_left = -179.5
-offset_top = 162.0
+offset_top = -25.92
 offset_right = 179.5
-offset_bottom = 214.0
+offset_bottom = 14.08
 grow_horizontal = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(179.5, 19.5)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
-theme_override_constants/shadow_offset_x = 12
 theme_override_constants/shadow_offset_y = 12
-theme_override_fonts/font = ExtResource("3_rdjqi")
-theme_override_font_sizes/font_size = 48
-text = "Level Complete!"
+theme_override_constants/shadow_offset_x = 12
+theme_override_fonts/normal_font = ExtResource("3_rdjqi")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[wave amp=60 freq=5][rainbow freq=.2 sat=.8 val=0.8 speed=3.0]Level Complete![/rainbow][/wave]"
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="timer" type="Panel" parent="."]
@@ -90,10 +337,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -54.0
-offset_right = 130.0
-offset_bottom = -14.0
+offset_left = -1890.0
+offset_top = -65.0
+offset_right = -1630.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rdjqi")
@@ -111,6 +358,7 @@ offset_right = -53.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
 theme_override_constants/shadow_offset_x = 12
 theme_override_constants/shadow_offset_y = 12
@@ -132,6 +380,7 @@ offset_right = 103.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
 theme_override_constants/shadow_offset_x = 12
 theme_override_constants/shadow_offset_y = 12
@@ -153,6 +402,7 @@ offset_right = 292.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
 theme_override_constants/shadow_offset_x = 12
 theme_override_constants/shadow_offset_y = 12
@@ -162,7 +412,7 @@ text = "00"
 horizontal_alignment = 1
 
 [node name="character" type="AnimatedSprite2D" parent="."]
-position = Vector2(566, 443.225)
+position = Vector2(566, 760)
 scale = Vector2(6.75, 6.75)
 sprite_frames = SubResource("SpriteFrames_l46iw")
 animation = &"animation"
@@ -173,18 +423,62 @@ offset_left = 415.0
 offset_top = 527.0
 offset_right = 785.0
 offset_bottom = 583.0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 36
 
 [node name="retry" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
+theme_override_colors/font_focus_color = Color(1, 0.835294, 0.254902, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_fonts/font = ExtResource("3_rdjqi")
 theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
 text = "Retry"
 
 [node name="next level" type="Button" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.835294, 0.254902, 1)
+theme_override_colors/font_focus_color = Color(1, 0.835294, 0.254902, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.835294, 0.254902, 1)
 theme_override_fonts/font = ExtResource("3_rdjqi")
 theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
 text = "Next Level"
 
+[node name="result_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wrniu")
+}
+
+[node name="subtext_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nj5ho")
+}
+
+[node name="timer_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_et5d2")
+}
+
+[node name="char_anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_46yes")
+}
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l46iw")
+volume_db = -24.0
+autoplay = true
+
+[node name="click_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wrniu")
+volume_db = -4.0
+
 [connection signal="pressed" from="HBoxContainer/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="HBoxContainer/next level" to="." method="_on_next_level_pressed"]

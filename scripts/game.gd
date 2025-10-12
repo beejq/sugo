@@ -5,12 +5,16 @@ extends Node2D
 
 func _ready() -> void:
 	music.play()
-	TimerManager.start_timer_after_delay()
+	
+	if not Gamestate.in_menu:
+		TimerManager.start_timer_after_delay()
+	
 	Transition.fade_out()
 
 	await get_tree().create_timer(5.0).timeout
 	timer_panel.visible = true
 
 func _process(delta: float) -> void:
-	if (Gamestate.level_finished):
-		pass #CHANGE SCENE TO CUTSCENE / LEVEL FINISHED
+	pass
+	#if (Gamestate.level_finished):
+		#Gamestate.level1_fin = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://danfueubewmek"
+path="res://.godot/imported/No Destination.mp3-0f366d46e3efcdffdd2409459d4d61d6.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/No Destination.mp3"
+dest_files=["res://.godot/imported/No Destination.mp3-0f366d46e3efcdffdd2409459d4d61d6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
