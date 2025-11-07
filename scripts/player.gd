@@ -289,7 +289,7 @@ func dash_logic(delta: float) -> void:
 	
 	var input_dir: Vector2 = Vector2(
 		Input.get_axis("left", "right"),
-		Input.get_axis("jump", "ui_down")
+		Input.get_axis("jump", "down")
 	).normalized()
 	
 	if input_dir.x != 0:
