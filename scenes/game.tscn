@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://bahpo4o5s3h6e"]
+[gd_scene load_steps=108 format=4 uid="uid://bahpo4o5s3h6e"]
 
 [ext_resource type="Shader" uid="uid://5furwmmjiqfn" path="res://shaders/godray.gdshader" id="1_bhx41"]
 [ext_resource type="PackedScene" uid="uid://t01rjtuo78re" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://7myxyjsv6dqv" path="res://scenes/spring.tscn" id="33_v2yb1"]
 [ext_resource type="PackedScene" uid="uid://b58um6f5pe3bw" path="res://scenes/checkpoint_ui.tscn" id="35_gxtfn"]
 [ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="36_twgab"]
+[ext_resource type="PackedScene" uid="uid://rbhl0inglv72" path="res://scenes/pause_screen.tscn" id="37_02fa5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twgab"]
 texture = ExtResource("3_lbhrr")
@@ -4000,6 +4001,10 @@ offset_bottom = -543.0
 theme_override_fonts/font = ExtResource("36_twgab")
 theme_override_font_sizes/font_size = 32
 text = "Ginagawa mo dito?"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause Screen" parent="CanvasLayer" instance=ExtResource("37_02fa5")]
 
 [connection signal="body_entered" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Jumping Tutorial/Area2D" to="Jumping Tutorial" method="_on_area_2d_body_exited"]
