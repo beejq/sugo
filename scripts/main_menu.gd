@@ -7,6 +7,7 @@ extends Control
 @onready var bg_music: AudioStreamPlayer2D = $bgMusic
 @onready var credits: Control = $Credits
 @onready var transition: CanvasLayer = $transition
+@onready var level_selector_screen: Control = $"Level Selector Screen"
 
 func _ready() -> void:
 	bg_music.play()
@@ -18,15 +19,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("esc") and credits.visible:
 		credits.visible = false
-		print("Exit")
+	if Input.is_action_just_pressed("esc") and level_selector_screen.visible:
+		level_selector_screen.visible = false
 		
 func _on_start_pressed() -> void:
 	click_sfx.play()
-	await get_tree().create_timer(0.2).timeout
+	level_selector_screen.visible = true
 	Gamestate.in_menu = false
-	await Transition.fade_in()
-	if is_instance_valid(self) and get_tree() != null:
-		get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
+	#OLD START GAME LOGIC
+	#await get_tree().create_timer(0.2).timeout
+	#Gamestate.in_menu = false
+	#await Transition.fade_in()
+	#if is_instance_valid(self) and get_tree() != null:
+		#get_tree().change_scene_to_file("res://scenes/intro_cutscene.tscn")
 	
 func _on_credits_pressed() -> void:
 	click_sfx.play()
