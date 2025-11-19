@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cg6d852ke14wa"]
+[gd_scene load_steps=21 format=3 uid="uid://cg6d852ke14wa"]
 
 [ext_resource type="Script" uid="uid://csy73kygser83" path="res://scripts/main_menu.gd" id="1_8ln24"]
 [ext_resource type="Shader" uid="uid://dhpwv0ywqfbqd" path="res://shaders/main_menu.gdshader" id="1_bqqt6"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="7_oa1go"]
 [ext_resource type="AudioStream" uid="uid://b231awxew5alk" path="res://assets/Sounds/Kevin MacLeod - Pixelland  NO COPYRIGHT 8-bit Music.mp3" id="8_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://g4ixqdh3vfy1" path="res://scenes/credits.tscn" id="9_jk1qb"]
+[ext_resource type="PackedScene" uid="uid://dhb3w8kckiiqy" path="res://scenes/level_selector_screen.tscn" id="10_5dd4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
 shader = ExtResource("1_bqqt6")
@@ -105,7 +106,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(687, 12), Vector2(355, 12)]
+"values": [Vector2(642, 12), Vector2(309.55, 12)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -163,7 +164,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8ln24")
 metadata/_edit_use_anchors_ = true
-metadata/_edit_vertical_guides_ = [1084.0]
+metadata/_edit_vertical_guides_ = [1084.0, 1416.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_8ln24")
@@ -218,9 +219,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 111.0
+offset_left = -266.45
 offset_top = -20.0
-offset_right = 334.0
+offset_right = 1.54999
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -233,7 +234,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 40
-text = "Start Game"
+text = "SELECT LEVEL"
 horizontal_alignment = 2
 uppercase = true
 
@@ -248,9 +249,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 176.0
+offset_left = 171.77
 offset_top = -20.0
-offset_right = 334.0
+offset_right = 329.77
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -320,6 +321,10 @@ stream = ExtResource("7_oa1go")
 stream = ExtResource("8_tbmy8")
 
 [node name="Credits" parent="." instance=ExtResource("9_jk1qb")]
+visible = false
+layout_mode = 1
+
+[node name="Level Selector Screen" parent="." instance=ExtResource("10_5dd4i")]
 visible = false
 layout_mode = 1
 

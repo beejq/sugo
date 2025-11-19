@@ -1,0 +1,189 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhb3w8kckiiqy"]
+
+[ext_resource type="Script" uid="uid://d0vgq7v62qs3k" path="res://scripts/level_selector_screen.gd" id="1_6v3tn"]
+[ext_resource type="FontFile" uid="uid://bjaw4kieh4cbo" path="res://assets/font/BoldPixels.ttf" id="1_un83t"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6v3tn"]
+specular_color = Color(0.6, 0.870588, 0.545098, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im14c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l46iw"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrniu"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 0, 0, 0.858824)
+shadow_size = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im14c"]
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 8
+border_color = Color(1, 0.835294, 0.254902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[node name="Level Selector Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6v3tn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.6, 0.870588, 0.545098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_6v3tn")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -216.0
+offset_right = 512.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level1_btn" type="Button" parent="GridContainer/PanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l46iw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 1"
+
+[node name="PanelContainer2" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level2_btn" type="Button" parent="GridContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 2"
+
+[node name="PanelContainer3" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level3_btn" type="Button" parent="GridContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 3"
+
+[node name="PanelContainer4" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level4_btn" type="Button" parent="GridContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 4"
+
+[node name="PanelContainer5" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level5_btn" type="Button" parent="GridContainer/PanelContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 5"
+
+[node name="PanelContainer6" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 2
+
+[node name="level6_btn" type="Button" parent="GridContainer/PanelContainer6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_un83t")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+text = "Level 6"
+
+[connection signal="pressed" from="GridContainer/PanelContainer/level1_btn" to="." method="_on_level_1_btn_pressed"]
+[connection signal="pressed" from="GridContainer/PanelContainer2/level2_btn" to="." method="_on_level_2_btn_pressed"]
+[connection signal="pressed" from="GridContainer/PanelContainer3/level3_btn" to="." method="_on_level_3_btn_pressed"]
+[connection signal="pressed" from="GridContainer/PanelContainer4/level4_btn" to="." method="_on_level_4_btn_pressed"]
+[connection signal="pressed" from="GridContainer/PanelContainer5/level5_btn" to="." method="_on_level_5_btn_pressed"]
+[connection signal="pressed" from="GridContainer/PanelContainer6/level6_btn" to="." method="_on_level_6_btn_pressed"]
