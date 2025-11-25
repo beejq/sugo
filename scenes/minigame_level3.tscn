@@ -1,0 +1,396 @@
+[gd_scene load_steps=18 format=3 uid="uid://orlqw5jjspv0"]
+
+[ext_resource type="Script" uid="uid://dythq2sq7j53m" path="res://scripts/minigame_level_3.gd" id="1_j6ces"]
+[ext_resource type="Texture2D" uid="uid://dhx2lbnvoijuf" path="res://assets/ui/cozy gui/Cozy GUI/Tileset/Cozy GUI - Tileset (By Pizza Doggy).png" id="2_aersj"]
+[ext_resource type="FontFile" uid="uid://8y0v08b83lpv" path="res://assets/font/PixelAE-Bold.ttf" id="3_rdadd"]
+[ext_resource type="Texture2D" uid="uid://bljkfqjltkjdp" path="res://assets/ui/Tiles/Large tiles/Thick outline/tile_0013.png" id="4_ma7sg"]
+[ext_resource type="Texture2D" uid="uid://cw8l4vjkpv4yl" path="res://assets/ui/99_ingredients/ingredients_png/cheese_png/cheddar.png" id="5_j6ces"]
+[ext_resource type="Texture2D" uid="uid://c8lt7dx1s2ojy" path="res://assets/ui/99_ingredients/ingredients_png/eggs_png/egg_white.png" id="6_aersj"]
+[ext_resource type="Texture2D" uid="uid://bfmhcj7a22v1s" path="res://assets/ui/99_ingredients/ingredients_png/grains_png/rice.png" id="8_iiwl4"]
+[ext_resource type="Texture2D" uid="uid://7smx2nxdejof" path="res://assets/ui/99_ingredients/ingredients_png/spices_png/cloves.png" id="8_rdadd"]
+[ext_resource type="Texture2D" uid="uid://chvvnrxp27u16" path="res://assets/ui/99_ingredients/ingredients_png/water_png/water_bottled.png" id="9_ma7sg"]
+[ext_resource type="Texture2D" uid="uid://1ubtytaeyjcb" path="res://assets/ui/99_ingredients/ingredients_png/yogurt_and_milk_png/yogurt_drink.png" id="10_82q7f"]
+[ext_resource type="AudioStream" uid="uid://dt7ngsfmrqttu" path="res://assets/Sounds/Blip13.wav" id="11_wxb3v"]
+[ext_resource type="AudioStream" uid="uid://lsioxht1lwio" path="res://assets/Sounds/click.wav" id="12_njuwf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22ed1"]
+texture = ExtResource("2_aersj")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 9.0
+region_rect = Rect2(3, 2, 42, 44)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4spdj"]
+texture = ExtResource("4_ma7sg")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ju2r"]
+bg_color = Color(0, 0, 0, 0)
+shadow_color = Color(1, 1, 1, 0.0745098)
+shadow_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802es"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 36
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_802es"]
+
+[node name="StoreMinigame" type="CanvasLayer"]
+script = ExtResource("1_j6ces")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -234.0
+offset_right = 276.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_22ed1")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.5
+offset_top = 35.0
+offset_right = 256.5
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.294118, 0.25098, 0.180392, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 30
+text = "BUY THE INGREDIENTS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -440.0
+offset_right = 207.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 32
+columns = 3
+
+[node name="ing1" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_j6ces")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Cheese"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button1" type="Button" parent="Panel/GridContainer/ing1"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing2" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_aersj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Eggs"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button2" type="Button" parent="Panel/GridContainer/ing2"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing3" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_iiwl4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Rice"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button3" type="Button" parent="Panel/GridContainer/ing3"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing4" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_rdadd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Cloves"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button4" type="Button" parent="Panel/GridContainer/ing4"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing5" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing5/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_ma7sg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing5/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Water"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button5" type="Button" parent="Panel/GridContainer/ing5"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="ing6" type="PanelContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_4spdj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/GridContainer/ing6"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer/ing6/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("10_82q7f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Panel/GridContainer/ing6/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.628507, 0.3276, 1)
+theme_override_colors/font_outline_color = Color(0.17, 0.117413, 0.0612, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_rdadd")
+theme_override_font_sizes/font_size = 20
+text = "Yakult"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="button6" type="Button" parent="Panel/GridContainer/ing6"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_7ju2r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_802es")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_802es")
+
+[node name="selectingButtonSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wxb3v")
+
+[node name="clickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_njuwf")
+
+[connection signal="pressed" from="Panel/GridContainer/ing1/button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing2/button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing3/button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing4/button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing5/button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/ing6/button6" to="." method="_on_button_6_pressed"]

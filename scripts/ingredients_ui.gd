@@ -14,6 +14,9 @@ var ingredient_images = {
 	"Pepper": preload("res://assets/ui/99_ingredients/ingredients_png/spices_png/pepper.png"),
 	"Rice": preload("res://assets/ui/99_ingredients/ingredients_png/grains_png/rice.png"),
 	"Aji": preload("res://assets/ui/msg.png"),
+	"Yakult": preload("res://assets/ui/99_ingredients/ingredients_png/yogurt_and_milk_png/yogurt_drink.png"),
+	"Cheese": preload("res://assets/ui/99_ingredients/ingredients_png/cheese_png/cheddar.png"),
+	"Water": preload("res://assets/ui/99_ingredients/ingredients_png/water_png/water_bottled.png"),
 }
 
 @onready var ingredient_images_nodes = [
@@ -25,6 +28,7 @@ var ingredient_images = {
 
 var level1_ingredients = Gamestate.tutorial_ingredients
 var level2_ingredients = Gamestate.level2_ingredients
+var level3_ingredients = Gamestate.level3_ingredients
 func _ready() -> void:
 	if not Gamestate.ingredients_shown and not Gamestate.in_menu:
 		Gamestate.ingredients_shown = true
@@ -46,12 +50,22 @@ func _ready() -> void:
 		panel.visible = false
 
 func show_ingredient():
-	if not Gamestate.level1_fin and not Gamestate.level2_fin:
+	#if not Gamestate.level1_fin and not Gamestate.level2_fin:
+		#for i in range(level1_ingredients.size()):
+			#_set_ingredients(level1_ingredients)
+	#elif Gamestate.level1_fin and not Gamestate.level2_fin:
+			#_set_ingredients(level2_ingredients)
+	#elif Gamestate.level1_fin and Gamestate.level2_fin and not Gamestate.level3_fin:
+			#_set_ingredients(level3_ingredients)
+	if Gamestate.cutscene1_fin:
 		for i in range(level1_ingredients.size()):
 			_set_ingredients(level1_ingredients)
-	elif Gamestate.level1_fin and not Gamestate.level2_fin:
+	elif Gamestate.cutscene2_fin:
+		for i in range(level1_ingredients.size()):
 			_set_ingredients(level2_ingredients)
-
+	elif Gamestate.cutscene3_fin:
+		for i in range(level1_ingredients.size()):
+			_set_ingredients(level3_ingredients)
 			
 func _set_ingredients(ingredients: Array) -> void:
 	for i in range(ingredients.size()):

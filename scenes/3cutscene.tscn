@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bto4htxqk5qn3"]
+
+[ext_resource type="Texture2D" uid="uid://clnxg7nmsq5e2" path="res://assets/pixellab-a-kid-with-green-shirt-and-bro-1764034662640.png" id="1_luwss"]
+
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_luwss")

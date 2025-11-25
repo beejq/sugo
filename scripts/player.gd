@@ -25,14 +25,14 @@ extends CharacterBody2D
 
 
 # --- Configurable stats ---
-@export var SPEED : float = 200.0
+@export var SPEED : float = 150.0
 @export var JUMP_VELOCITY = -300.0
 const DASH_MULTIPLIER := 2.5
 const COYOTE_TIME := 0.15
 const JUMP_BUFFER_TIME := 0.15
 const WALL_JUMP_PUSHBACK = 100
 var WALL_SLIDE_GRAVITY = 80
-var springJumpHeight = -800
+var springJumpHeight = -550
 
 
 const DASH_AMT: float = 450.0
