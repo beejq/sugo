@@ -104,7 +104,7 @@ layout_mode = 2
 [node name="level1_btn" type="Button" parent="GridContainer/PanelContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l46iw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
@@ -118,7 +118,7 @@ layout_mode = 2
 [node name="level2_btn" type="Button" parent="GridContainer/PanelContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
@@ -132,7 +132,7 @@ layout_mode = 2
 [node name="level3_btn" type="Button" parent="GridContainer/PanelContainer3"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
@@ -146,11 +146,12 @@ layout_mode = 2
 [node name="level4_btn" type="Button" parent="GridContainer/PanelContainer4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+disabled = true
 text = "Level 4"
 
 [node name="PanelContainer5" type="PanelContainer" parent="GridContainer"]
@@ -160,11 +161,12 @@ layout_mode = 2
 [node name="level5_btn" type="Button" parent="GridContainer/PanelContainer5"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+disabled = true
 text = "Level 5"
 
 [node name="PanelContainer6" type="PanelContainer" parent="GridContainer"]
@@ -174,11 +176,12 @@ layout_mode = 2
 [node name="level6_btn" type="Button" parent="GridContainer/PanelContainer6"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_un83t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxEmpty_im14c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_im14c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wrniu")
 theme_override_styles/normal = SubResource("StyleBoxFlat_l46iw")
+disabled = true
 text = "Level 6"
 
 [connection signal="pressed" from="GridContainer/PanelContainer/level1_btn" to="." method="_on_level_1_btn_pressed"]

@@ -35,7 +35,7 @@ func _on_animation_end(anim_name : String) -> void:
 		DialogueManager.show_dialogue_balloon_scene(BALLOON, DIALOGUE_3, "start")
 	
 	if anim_name == "fade_out3":
-		get_tree().change_scene_to_file("res://scenes/end_cutscene.tscn")
+		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
 
 		
 func _on_dia_end(resource: DialogueResource) -> void:

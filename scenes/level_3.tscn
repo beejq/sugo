@@ -2598,6 +2598,10 @@ shape = SubResource("RectangleShape2D_vhnap")
 position = Vector2(1926, -113)
 shape = SubResource("RectangleShape2D_vhnap")
 
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="checkpoint"]
+position = Vector2(3811, -17)
+shape = SubResource("RectangleShape2D_vhnap")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Nearestestest2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -2691,6 +2695,25 @@ libraries = {
 &"": SubResource("AnimationLibrary_nepv3")
 }
 
+[node name="checkpoint_ui3" parent="." instance=ExtResource("22_c4rup")]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3709.0
+offset_top = 25.0
+offset_right = 3709.0
+offset_bottom = 25.0
+
+[node name="Area2D" type="Area2D" parent="checkpoint_ui3"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint_ui3/Area2D"]
+position = Vector2(-1.5, -42.5)
+shape = SubResource("RectangleShape2D_nquw4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="checkpoint_ui3"]
+libraries = {
+&"": SubResource("AnimationLibrary_nepv3")
+}
+
 [node name="godray2" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1sb0y")
 offset_left = 1615.0
@@ -2779,3 +2802,5 @@ position = Vector2(1594, 17)
 [connection signal="body_exited" from="checkpoint_ui/Area2D" to="checkpoint_ui" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="checkpoint_ui2/Area2D" to="checkpoint_ui2" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="checkpoint_ui2/Area2D" to="checkpoint_ui2" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="checkpoint_ui3/Area2D" to="checkpoint_ui3" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="checkpoint_ui3/Area2D" to="checkpoint_ui3" method="_on_area_2d_body_exited"]
