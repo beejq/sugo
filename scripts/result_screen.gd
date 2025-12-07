@@ -66,7 +66,7 @@ func _on_next_level_pressed() -> void:
 	elif Gamestate.cutscene2_fin:
 		Gamestate.cutscene2_fin = false
 		Gamestate.cutscene3_fin = true
-		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
+		get_tree().change_scene_to_file("res://scenes/after_level_2_cutscene.tscn")
 	
 	#if Gamestate.level1_fin and not Gamestate.level2_fin:
 		#get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")

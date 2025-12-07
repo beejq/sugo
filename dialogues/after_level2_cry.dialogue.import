@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://j35kc7kcdfq7"
+path="res://.godot/imported/after_level2_cry.dialogue-4f9b255c4fc36af18dac0399dbd4ac39.tres"
+
+[deps]
+
+source_file="res://dialogues/after_level2_cry.dialogue"
+dest_files=["res://.godot/imported/after_level2_cry.dialogue-4f9b255c4fc36af18dac0399dbd4ac39.tres"]
+
+[params]
+
+defaults=true
