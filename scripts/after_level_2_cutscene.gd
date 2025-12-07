@@ -57,5 +57,4 @@ func _on_dia_end(resource: DialogueResource) -> void:
 	if resource == DIALOGUE_4:
 		anim_4.play("fade_out4")
 	if resource == END:
-		pass
-		#Switch to level3 cutscene
+		get_tree().change_scene_to_file("res://scenes/level_3_real_cutscene.tscn")

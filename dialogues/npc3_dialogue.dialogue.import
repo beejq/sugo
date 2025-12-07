@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://scsualo4uck2"
+path="res://.godot/imported/npc3_dialogue.dialogue-42b031b19b71910a20f40ef2fbfe326f.tres"
+
+[deps]
+
+source_file="res://dialogues/npc3_dialogue.dialogue"
+dest_files=["res://.godot/imported/npc3_dialogue.dialogue-42b031b19b71910a20f40ef2fbfe326f.tres"]
+
+[params]
+
+defaults=true

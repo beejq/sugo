@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://55gtj7ejs8js"]
+[gd_scene load_steps=79 format=4 uid="uid://55gtj7ejs8js"]
 
 [ext_resource type="Script" uid="uid://dk8ywk0njiqnu" path="res://scripts/level_2.gd" id="1_wu3ic"]
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="2_vv2vh"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://rbhl0inglv72" path="res://scenes/pause_screen.tscn" id="25_sf7oq"]
 [ext_resource type="PackedScene" uid="uid://7myxyjsv6dqv" path="res://scenes/spring.tscn" id="25_wu3ic"]
 [ext_resource type="Texture2D" uid="uid://y3qvnp6xmtpp" path="res://assets/spike.png" id="26_vv2vh"]
+[ext_resource type="PackedScene" uid="uid://dja204kj12li0" path="res://scenes/npc_interactable_3.tscn" id="27_5kn0t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63d2t"]
 texture = ExtResource("2_vv2vh")
@@ -2400,7 +2401,7 @@ tile_map_data = PackedByteArray("AADw/wAAAQAHAAAAAADx/wAAAQAHAAAAAADy/wAAAQAHAAA
 tile_set = SubResource("TileSet_wo48x")
 
 [node name="Player" parent="." instance=ExtResource("6_ld1e4")]
-position = Vector2(3810, 65)
+position = Vector2(1522, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -2770,6 +2771,9 @@ position = Vector2(4056, 59)
 
 [node name="Jump Spring4" parent="." instance=ExtResource("25_wu3ic")]
 position = Vector2(4288, -21)
+
+[node name="npc_interactable3" parent="." instance=ExtResource("27_5kn0t")]
+position = Vector2(1594, 17)
 
 [connection signal="body_entered" from="checkpoint_ui/Area2D" to="checkpoint_ui" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="checkpoint_ui/Area2D" to="checkpoint_ui" method="_on_area_2d_body_exited"]

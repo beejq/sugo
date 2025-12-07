@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://dja204kj12li0"]
+
+[ext_resource type="Script" uid="uid://cj2883wy5ces" path="res://scripts/npc_interactable_3.gd" id="1_wsnan"]
+[ext_resource type="Texture2D" uid="uid://s3gy1anmr4i2" path="res://assets/atok.png" id="2_t7k7v"]
+[ext_resource type="Texture2D" uid="uid://cxmywx5vtgr3d" path="res://assets/ui/cozy gui/Keyboard Letters and Symbols.png" id="3_4olr3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1gap"]
+atlas = ExtResource("2_t7k7v")
+region = Rect2(0, 0, 83, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vo3h"]
+atlas = ExtResource("2_t7k7v")
+region = Rect2(142, 0, 83, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1gap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1gap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vo3h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1gap"]
+size = Vector2(63.25, 65.5)
+
+[sub_resource type="Animation" id="Animation_stau7"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("interactable_sign:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f1gap"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("interactable_sign:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2vo3h"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("interactable_sign:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vo3h"]
+_data = {
+&"RESET": SubResource("Animation_stau7"),
+&"fade_in": SubResource("Animation_f1gap"),
+&"fade_out": SubResource("Animation_2vo3h")
+}
+
+[node name="npc_interactable3" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wsnan")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -11)
+scale = Vector2(0.168675, 0.168675)
+sprite_frames = SubResource("SpriteFrames_f1gap")
+autoplay = "default"
+frame_progress = 0.342371
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -33)
+shape = SubResource("RectangleShape2D_f1gap")
+
+[node name="interactable_sign" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-1.19209e-07, -34)
+scale = Vector2(0.661459, 0.661459)
+texture = ExtResource("3_4olr3")
+region_enabled = true
+region_rect = Rect2(65, 34, 13, 12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="interactable_sign"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_2vo3h")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
