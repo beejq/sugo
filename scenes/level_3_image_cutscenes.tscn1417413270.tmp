@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cemn5ibojelbn"]
+
+[ext_resource type="Texture2D" uid="uid://b0msmvason2lj" path="res://assets/image_cutscene/waking-up.png" id="1_bieij"]
+[ext_resource type="Script" uid="uid://dvd3ppbl6mi57" path="res://scripts/level_3_image_cutscenes.gd" id="1_ee7en"]
+[ext_resource type="PackedScene" uid="uid://l0u83g2h5sct" path="res://scenes/balloon_bottom.tscn" id="2_5pdfa"]
+
+[node name="level_3_image_cutscenes" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ee7en")
+
+[node name="black_bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bieij")
+stretch_mode = 5
+
+[node name="ExampleBalloon" parent="." instance=ExtResource("2_5pdfa")]

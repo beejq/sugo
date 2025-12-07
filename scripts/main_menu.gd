@@ -26,6 +26,9 @@ func _on_start_pressed() -> void:
 	click_sfx.play()
 	level_selector_screen.visible = true
 	Gamestate.in_menu = false
+	Gamestate.cutscene1_fin = false
+	Gamestate.cutscene2_fin = false
+	Gamestate.cutscene3_fin = false
 	#OLD START GAME LOGIC
 	#await get_tree().create_timer(0.2).timeout
 	#Gamestate.in_menu = false
@@ -36,7 +39,6 @@ func _on_start_pressed() -> void:
 func _on_credits_pressed() -> void:
 	click_sfx.play()
 	credits.visible = true
-	print("Change scene to credits")
 
 func _on_quit_pressed() -> void:
 	click_sfx.play()

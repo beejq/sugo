@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cf3xmei8gvx8o"
+path="res://.godot/imported/after_level2.dialogue-a75f95d59e0d00a2468b23459b4d0fbe.tres"
+
+[deps]
+
+source_file="res://dialogues/after_level2.dialogue"
+dest_files=["res://.godot/imported/after_level2.dialogue-a75f95d59e0d00a2468b23459b4d0fbe.tres"]
+
+[params]
+
+defaults=true

@@ -9,4 +9,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.velocity.y = body.springJumpHeight
 		animated_sprite_2d.play("spring")
 		spring_sfx.play()
+		body.can_dash = true
+		body.update_dash_visuals()
 		

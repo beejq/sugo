@@ -35,12 +35,19 @@ func _on_retry_pressed() -> void:
 	TimerManager.freeze = true
 	click_sfx.play()
 	
-	if Gamestate.level1_fin and not Gamestate.level2_fin:
-		Gamestate.level1_fin = false
+	#if Gamestate.level1_fin and not Gamestate.level2_fin:
+		#Gamestate.level1_fin = false
+		#get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
+	#elif Gamestate.level2_fin and Gamestate.level1_fin:
+		#Gamestate.level2_fin = false
+		#get_tree().change_scene_to_file("res://scenes/level_2.tscn")
+		
+	if Gamestate.cutscene1_fin:
 		get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
-	elif Gamestate.level2_fin and Gamestate.level1_fin:
-		Gamestate.level2_fin = false
+	elif Gamestate.cutscene2_fin:
 		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
+	elif Gamestate.cutscene3_fin:
+		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
 
 func _on_next_level_pressed() -> void:
 	Gamestate.intro_done = false
@@ -52,7 +59,18 @@ func _on_next_level_pressed() -> void:
 	TimerManager.freeze = true
 	click_sfx.play()
 	
-	if Gamestate.level1_fin and not Gamestate.level2_fin:
+	if Gamestate.cutscene1_fin:
+		Gamestate.cutscene1_fin = false
+		Gamestate.cutscene2_fin = true
 		get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")
-	elif Gamestate.level2_fin and Gamestate.level1_fin:
-		print("CONGRATS ON FINISHING THE 2 LEVELS!")
+	elif Gamestate.cutscene2_fin:
+		Gamestate.cutscene2_fin = false
+		Gamestate.cutscene3_fin = true
+		get_tree().change_scene_to_file("res://scenes/after_level_2_cutscene.tscn")
+	elif Gamestate.cutscene3_fin:
+		get_tree().change_scene_to_file("res://scenes/end_cutscene.tscn")
+	
+	#if Gamestate.level1_fin and not Gamestate.level2_fin:
+		#get_tree().change_scene_to_file("res://scenes/level_2_cutscene.tscn")
+	#elif Gamestate.level2_fin and Gamestate.level1_fin:
+		#print("CONGRATS ON FINISHING THE 2 LEVELS!")

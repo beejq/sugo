@@ -43,5 +43,4 @@ func _on_animation_finished(anim_name: String) -> void:
 		extShown = true
 		if extShown:
 			inDialogue = false
-			Transition.fade_in()
-			get_tree().change_scene_to_file("res://scenes/level_2.tscn")
+			get_tree().change_scene_to_file("res://scenes/level2_cutscene_ext.tscn")
