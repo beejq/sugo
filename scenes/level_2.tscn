@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://e0xrsgqi42eu"]
+[gd_scene load_steps=74 format=4 uid="uid://e0xrsgqi42eu"]
 
 [ext_resource type="Texture2D" uid="uid://bo4itlixprc6y" path="res://assets/general.png" id="1_jm1iu"]
 [ext_resource type="Script" uid="uid://dk8ywk0njiqnu" path="res://scripts/level_2.gd" id="1_ne2mo"]
@@ -25,6 +25,7 @@
 [ext_resource type="Shader" uid="uid://cn08ldehthbdc" path="res://shaders/godray2.gdshader" id="21_k6a82"]
 [ext_resource type="PackedScene" uid="uid://bdwsx8qgw7wp4" path="res://scenes/world_border.tscn" id="24_vwfin"]
 [ext_resource type="PackedScene" uid="uid://rbhl0inglv72" path="res://scenes/pause_screen.tscn" id="25_63d2t"]
+[ext_resource type="PackedScene" uid="uid://dfgyl1j8ufmqq" path="res://scenes/npc_interactable_2.tscn" id="26_va6c3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_63d2t"]
 texture = ExtResource("1_jm1iu")
@@ -2377,7 +2378,7 @@ tile_map_data = PackedByteArray("AAD7/wAAAAACAAAAAAD8/wAAAAACAAAAAAD9/wAAAAACAAA
 tile_set = SubResource("TileSet_wo48x")
 
 [node name="Player" parent="." instance=ExtResource("3_pbc48")]
-position = Vector2(1732, -240)
+position = Vector2(1197, -128)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -42.33)
@@ -2767,6 +2768,9 @@ position = Vector2(1870, -225)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause Screen" parent="CanvasLayer" instance=ExtResource("25_63d2t")]
+
+[node name="npc_interactable2" parent="." instance=ExtResource("26_va6c3")]
+position = Vector2(1302, -112)
 
 [connection signal="body_entered" from="checkpoint_ui/Area2D" to="checkpoint_ui" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="checkpoint_ui/Area2D" to="checkpoint_ui" method="_on_area_2d_body_exited"]

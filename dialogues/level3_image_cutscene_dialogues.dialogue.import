@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dfyuydeax8ilt"
+path="res://.godot/imported/level3_image_cutscene_dialogues.dialogue-89651e43502cb619d45ab7b8b4c7e6de.tres"
+
+[deps]
+
+source_file="res://dialogues/level3_image_cutscene_dialogues.dialogue"
+dest_files=["res://.godot/imported/level3_image_cutscene_dialogues.dialogue-89651e43502cb619d45ab7b8b4c7e6de.tres"]
+
+[params]
+
+defaults=true

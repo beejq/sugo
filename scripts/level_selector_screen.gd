@@ -13,6 +13,7 @@ func _on_level_2_btn_pressed() -> void:
 func _on_level_3_btn_pressed() -> void:
 	Gamestate.cutscene3_fin = true
 	get_tree().change_scene_to_file("res://scenes/level_3.tscn")
+	#Change to level3 cutscene
 
 
 func _on_level_4_btn_pressed() -> void:
